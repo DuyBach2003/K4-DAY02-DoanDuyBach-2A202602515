@@ -1,0 +1,135 @@
+{
+  "config": {
+    "exp_id": "T06",
+    "seed": 0,
+    "fold": 0,
+    "backbone": "deit_small_patch16_224",
+    "init": "finetune",
+    "drop_rate": 0.0,
+    "img_size": 224,
+    "aug": "basic",
+    "sampler": null,
+    "mix": null,
+    "mix_alpha": 1.0,
+    "loss": "focal",
+    "label_smoothing": 0.0,
+    "focal_gamma": 2.0,
+    "class_weight_beta": null,
+    "epochs": 10,
+    "batch_size": 64,
+    "lr_backbone": 0.0001,
+    "lr_head": 0.001,
+    "weight_decay": 0.05,
+    "warmup_epochs": 1.0,
+    "ema_decay": null,
+    "amp": true,
+    "num_workers": 6,
+    "grad_clip": null,
+    "images_dir": "../../data/images",
+    "labels_dir": "../../data/labels",
+    "out_dir": "runs",
+    "pred_dir": "predictions",
+    "curves_dir": "curves",
+    "desc": "focal",
+    "save_test_predictions": false,
+    "measure_latency": true,
+    "max_train_batches": null
+  },
+  "weight_tag": "deit_small_patch16_224.fb_in1k",
+  "device": "mps",
+  "amp_dtype": "torch.float16",
+  "params_m": 21.669129,
+  "trainable_params_m": 21.669129,
+  "gmacs": 4.250294016,
+  "class_weights": null,
+  "split_check": {
+    "n": {
+      "train": 10501,
+      "val": 3501,
+      "test": 3507
+    },
+    "fraction": {
+      "train": 0.5997,
+      "val": 0.2,
+      "test": 0.2003
+    },
+    "per_class": {
+      "train": [
+        675,
+        637,
+        618,
+        613,
+        637,
+        605,
+        644,
+        609,
+        5463
+      ],
+      "val": [
+        225,
+        213,
+        206,
+        204,
+        212,
+        202,
+        215,
+        203,
+        1821
+      ],
+      "test": [
+        226,
+        213,
+        207,
+        205,
+        213,
+        202,
+        215,
+        204,
+        1822
+      ]
+    },
+    "overlap": {
+      "train&val": 0,
+      "train&test": 0,
+      "val&test": 0
+    },
+    "union": 17509,
+    "missing_files": 0,
+    "images_on_disk": 17509
+  },
+  "versions": {
+    "python": "3.12.14",
+    "torch": "2.14.1",
+    "torchvision": "0.29.1",
+    "timm": "1.0.30",
+    "numpy": "2.5.3",
+    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "machine": "arm64"
+  },
+  "param_groups": [
+    {
+      "name": "backbone_decay",
+      "n": 21528576,
+      "lr": 6.097560975609757e-07,
+      "weight_decay": 0.05
+    },
+    {
+      "name": "backbone_no_decay",
+      "n": 137088,
+      "lr": 6.097560975609757e-07,
+      "weight_decay": 0.0
+    },
+    {
+      "name": "head_decay",
+      "n": 3456,
+      "lr": 6.0975609756097564e-06,
+      "weight_decay": 0.05
+    },
+    {
+      "name": "head_no_decay",
+      "n": 9,
+      "lr": 6.0975609756097564e-06,
+      "weight_decay": 0.0
+    }
+  ]
+}

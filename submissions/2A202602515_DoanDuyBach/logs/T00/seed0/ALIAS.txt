@@ -1,0 +1,1 @@
+T00 seed0 là bản sao của B03 seed0 (cấu hình giống hệt, không chạy lại).

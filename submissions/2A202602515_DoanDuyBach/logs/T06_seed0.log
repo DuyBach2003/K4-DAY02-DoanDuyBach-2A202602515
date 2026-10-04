@@ -1,0 +1,17 @@
+=== T06 seed0: {'exp_id': 'T06', 'seed': 0, 'fold': 0, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'focal', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'focal', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+[T06 seed0] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+[T06 seed0] ep01 train_loss=0.5712 val_loss=0.5204 val_F1=0.8198 val_top1=0.8609 t=169s *
+[T06 seed0] ep02 train_loss=0.1764 val_loss=0.3763 val_F1=0.8363 val_top1=0.8786 t=192s *
+[T06 seed0] ep03 train_loss=0.1221 val_loss=0.3307 val_F1=0.8849 val_top1=0.9063 t=214s *
+[T06 seed0] ep04 train_loss=0.1028 val_loss=0.2631 val_F1=0.9112 val_top1=0.9340 t=205s *
+[T06 seed0] ep05 train_loss=0.0745 val_loss=0.2194 val_F1=0.9215 val_top1=0.9426 t=223s *
+[T06 seed0] ep06 train_loss=0.0523 val_loss=0.2215 val_F1=0.9259 val_top1=0.9452 t=203s *
+[T06 seed0] ep07 train_loss=0.0427 val_loss=0.1808 val_F1=0.9369 val_top1=0.9546 t=333s *
+=== T06 seed0: {'exp_id': 'T06', 'seed': 0, 'fold': 0, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'focal', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'focal', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[T06 seed0] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+[T06 seed0] RESUME từ epoch 8 (last.pt)
+[T06 seed0] ep08 train_loss=0.0290 val_loss=0.1757 val_F1=0.9384 val_top1=0.9560 t=208s *
+[T06 seed0] ep09 train_loss=0.0134 val_loss=0.1702 val_F1=0.9435 val_top1=0.9597 t=221s *
+[T06 seed0] ep10 train_loss=0.0100 val_loss=0.1665 val_F1=0.9424 val_top1=0.9597 t=229s
+[T06 seed0] DONE best_ep=9 val_F1=0.9435 val_top1=0.9597 36.8 min

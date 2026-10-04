@@ -1,0 +1,37 @@
+=== T00 seed2: {'exp_id': 'T00', 'seed': 2, 'fold': 0, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'baseline', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+[T00 seed2] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+[T00 seed2] ep01 train_loss=0.9520 val_loss=0.3822 val_F1=0.8297 val_top1=0.8732 t=267s *
+[T00 seed2] ep02 train_loss=0.3567 val_loss=0.3126 val_F1=0.8684 val_top1=0.9009 t=239s *
+[T00 seed2] ep03 train_loss=0.2472 val_loss=0.2359 val_F1=0.8912 val_top1=0.9172 t=246s *
+[T00 seed2] ep04 train_loss=0.1986 val_loss=0.1721 val_F1=0.9306 val_top1=0.9480 t=251s *
+[T00 seed2] ep05 train_loss=0.1577 val_loss=0.1724 val_F1=0.9283 val_top1=0.9449 t=244s
+[T00 seed2] ep06 train_loss=0.1334 val_loss=0.1501 val_F1=0.9314 val_top1=0.9517 t=248s *
+Traceback (most recent call last):
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/submissions/2A202602515_DoanDuyBach/code/experiments.py", line 126, in run_one
+    summary = train.run(cfg)
+              ^^^^^^^^^^^^^^
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/submissions/2A202602515_DoanDuyBach/code/train.py", line 439, in run
+    tr = train_one_epoch(model, train_loader, criterion, optimizer, scheduler, scaler, cfg, device,
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/submissions/2A202602515_DoanDuyBach/code/train.py", line 241, in train_one_epoch
+    scaler.step(optimizer)
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/torch/amp/grad_scaler.py", line 478, in step
+    retval = self._maybe_opt_step(optimizer, optimizer_state, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/torch/amp/grad_scaler.py", line 371, in _maybe_opt_step
+    if not sum(v.item() for v in optimizer_state["found_inf_per_device"].values()):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/torch/amp/grad_scaler.py", line 371, in <genexpr>
+    if not sum(v.item() for v in optimizer_state["found_inf_per_device"].values()):
+               ^^^^^^^^
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/torch/utils/data/_utils/signal_handling.py", line 73, in handler
+    _error_if_any_worker_fails()
+RuntimeError: DataLoader worker (pid 9462) is killed by signal: Killed: 9. 
+=== T00 seed2: {'exp_id': 'T00', 'seed': 2, 'fold': 0, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'baseline', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+[T00 seed2] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+[T00 seed2] RESUME từ epoch 7 (last.pt)
+[T00 seed2] ep07 train_loss=0.0805 val_loss=0.1306 val_F1=0.9449 val_top1=0.9603 t=150s *
+[T00 seed2] ep08 train_loss=0.0381 val_loss=0.1235 val_F1=0.9454 val_top1=0.9606 t=169s *
+[T00 seed2] ep09 train_loss=0.0275 val_loss=0.1167 val_F1=0.9478 val_top1=0.9634 t=164s *
+[T00 seed2] ep10 train_loss=0.0232 val_loss=0.1177 val_F1=0.9462 val_top1=0.9620 t=167s
+[T00 seed2] DONE best_ep=9 val_F1=0.9478 val_top1=0.9634 35.9 min

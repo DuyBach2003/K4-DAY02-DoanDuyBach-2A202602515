@@ -1,0 +1,212 @@
+=== queue start Sun Oct  4 19:30:24 +07 2026
+=== T06 seed0: {'exp_id': 'T06', 'seed': 0, 'fold': 0, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'focal', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'focal', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[T06 seed0] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+[T06 seed0] RESUME từ epoch 8 (last.pt)
+[T06 seed0] ep08 train_loss=0.0290 val_loss=0.1757 val_F1=0.9384 val_top1=0.9560 t=208s *
+[T06 seed0] ep09 train_loss=0.0134 val_loss=0.1702 val_F1=0.9435 val_top1=0.9597 t=221s *
+[T06 seed0] ep10 train_loss=0.0100 val_loss=0.1665 val_F1=0.9424 val_top1=0.9597 t=229s
+[T06 seed0] DONE best_ep=9 val_F1=0.9435 val_top1=0.9597 36.8 min
+=== T07 seed0: {'exp_id': 'T07', 'seed': 0, 'fold': 0, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce_weighted', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'ce_weighted', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+[T07 seed0] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+[T07 seed0] ep01 train_loss=1.0683 val_loss=0.6895 val_F1=0.7535 val_top1=0.7561 t=296s *
+[T07 seed0] ep02 train_loss=0.4111 val_loss=0.8128 val_F1=0.7321 val_top1=0.7352 t=278s
+[T07 seed0] ep03 train_loss=0.2951 val_loss=0.7256 val_F1=0.7711 val_top1=0.7552 t=277s *
+[T07 seed0] ep04 train_loss=0.2333 val_loss=0.3301 val_F1=0.8723 val_top1=0.8915 t=288s *
+[T07 seed0] ep05 train_loss=0.1880 val_loss=0.2692 val_F1=0.8960 val_top1=0.9140 t=307s *
+[T07 seed0] ep06 train_loss=0.1352 val_loss=0.2897 val_F1=0.8829 val_top1=0.9003 t=310s
+[T07 seed0] ep07 train_loss=0.1120 val_loss=0.2216 val_F1=0.9120 val_top1=0.9286 t=299s *
+[T07 seed0] ep08 train_loss=0.0860 val_loss=0.1945 val_F1=0.9210 val_top1=0.9346 t=319s *
+[T07 seed0] ep09 train_loss=0.0784 val_loss=0.1757 val_F1=0.9346 val_top1=0.9454 t=301s *
+[T07 seed0] ep10 train_loss=0.0738 val_loss=0.1807 val_F1=0.9302 val_top1=0.9423 t=327s
+[T07 seed0] DONE best_ep=9 val_F1=0.9346 val_top1=0.9454 50.3 min
+=== T04 seed0: {'exp_id': 'T04', 'seed': 0, 'fold': 0, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'trivial', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'trivialaug', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+[T04 seed0] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+[T04 seed0] ep01 train_loss=0.9955 val_loss=0.3971 val_F1=0.8294 val_top1=0.8703 t=362s *
+[T04 seed0] ep02 train_loss=0.4461 val_loss=0.3695 val_F1=0.8420 val_top1=0.8726 t=302s *
+[T04 seed0] ep03 train_loss=0.3372 val_loss=0.2498 val_F1=0.8813 val_top1=0.9146 t=239s *
+[T04 seed0] ep04 train_loss=0.2743 val_loss=0.1751 val_F1=0.9258 val_top1=0.9437 t=184s *
+[T04 seed0] ep05 train_loss=0.2339 val_loss=0.1743 val_F1=0.9211 val_top1=0.9426 t=243s
+[T04 seed0] ep06 train_loss=0.2017 val_loss=0.1475 val_F1=0.9411 val_top1=0.9557 t=282s *
+[T04 seed0] ep07 train_loss=0.1541 val_loss=0.1199 val_F1=0.9476 val_top1=0.9612 t=259s *
+[T04 seed0] ep08 train_loss=0.1425 val_loss=0.1152 val_F1=0.9496 val_top1=0.9643 t=243s *
+[T04 seed0] ep09 train_loss=0.1164 val_loss=0.1097 val_F1=0.9529 val_top1=0.9663 t=245s *
+[T04 seed0] ep10 train_loss=0.1112 val_loss=0.1107 val_F1=0.9525 val_top1=0.9660 t=238s
+python(65123) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+[T04 seed0] DONE best_ep=9 val_F1=0.9529 val_top1=0.9663 43.5 min
+=== T01 seed0: {'exp_id': 'T01', 'seed': 0, 'fold': 0, 'backbone': 'deit_small_patch16_224', 'init': 'frozen', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'frozen', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+[T01 seed0] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+python(65660) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(65662) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(65678) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(65691) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(65699) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(65715) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(66128) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(66129) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(66130) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(66131) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(66132) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(66133) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+[T01 seed0] ep01 train_loss=1.4581 val_loss=0.9784 val_F1=0.5464 val_top1=0.6775 t=77s *
+[T01 seed0] ep02 train_loss=0.8488 val_loss=0.7743 val_F1=0.6562 val_top1=0.7452 t=57s *
+[T01 seed0] ep03 train_loss=0.7354 val_loss=0.6947 val_F1=0.7006 val_top1=0.7738 t=54s *
+[T01 seed0] ep04 train_loss=0.6806 val_loss=0.6607 val_F1=0.7032 val_top1=0.7758 t=61s *
+[T01 seed0] ep05 train_loss=0.6463 val_loss=0.6460 val_F1=0.7137 val_top1=0.7826 t=60s *
+[T01 seed0] ep06 train_loss=0.6164 val_loss=0.6313 val_F1=0.7244 val_top1=0.7886 t=57s *
+[T01 seed0] ep07 train_loss=0.6125 val_loss=0.6224 val_F1=0.7296 val_top1=0.7923 t=55s *
+[T01 seed0] ep08 train_loss=0.5980 val_loss=0.6190 val_F1=0.7322 val_top1=0.7932 t=56s *
+[T01 seed0] ep09 train_loss=0.5901 val_loss=0.6159 val_F1=0.7329 val_top1=0.7932 t=54s *
+[T01 seed0] ep10 train_loss=0.5909 val_loss=0.6154 val_F1=0.7309 val_top1=0.7923 t=54s
+python(71123) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+[T01 seed0] DONE best_ep=9 val_F1=0.7329 val_top1=0.7932 9.8 min
+B01 {"backbone": "resnet50", "train_img_per_s": 35.82092517823682, "est_epoch_s_10501_imgs": 293.1526739677828}
+B02 {"backbone": "convnext_tiny", "train_img_per_s": 30.090530239749206, "est_epoch_s_10501_imgs": 348.9802245534481}
+B03 {"backbone": "deit_small_patch16_224", "train_img_per_s": 57.56295751729747, "est_epoch_s_10501_imgs": 182.4263459160257}
+B04 {"backbone": "swin_tiny_patch4_window7_224", "train_img_per_s": 48.724859173514844, "est_epoch_s_10501_imgs": 215.51627194251557}
+B05 {"backbone": "efficientnet_b0", "train_img_per_s": 59.48082970909901, "est_epoch_s_10501_imgs": 176.54427571634264}
+B06 {"backbone": "mobilenetv3_large_100", "train_img_per_s": 111.38421071195916, "est_epoch_s_10501_imgs": 94.27727622145392}
+I00        1 view (Resize256+CenterCrop224)              F1=0.9508 top1=0.9643 ECE=0.0062
+I01        TTA lật ngang, gộp xác suất                   F1=0.9505 top1=0.9649 ECE=0.0036
+I03a       TTA lật ngang, gộp logit                      F1=0.9499 top1=0.9643 ECE=0.0020
+I02a       5-crop 224 từ ảnh 256, gộp xác suất           F1=0.9498 top1=0.9640 ECE=0.0061
+I02b       5-crop + lật (K=10), gộp xác suất             F1=0.9508 top1=0.9654 ECE=0.0080
+I03b       5-crop + lật (K=10), gộp logit                F1=0.9511 top1=0.9654 ECE=0.0050
+I02c       đa tỉ lệ 224/256/288 (ảnh đầy đủ), gộp xác suất F1=0.9661 top1=0.9751 ECE=0.0119
+I03c       đa tỉ lệ 224/256/288, gộp logit               F1=0.9656 top1=0.9749 ECE=0.0045
+I04_224    độ phân giải kiểm tra 224 (ảnh đầy đủ, 1 view) F1=0.9525 top1=0.9652 ECE=0.0111
+I04_256    độ phân giải kiểm tra 256 (ảnh đầy đủ, 1 view) F1=0.9520 top1=0.9654 ECE=0.0041
+I04_288    độ phân giải kiểm tra 288 (ảnh đầy đủ, 1 view) F1=0.9643 top1=0.9740 ECE=0.0051
+I04_320    độ phân giải kiểm tra 320 (ảnh đầy đủ, 1 view) F1=0.9646 top1=0.9749 ECE=0.0055
+I05        ensemble B03+B04+B02                          F1=0.9693 top1=0.9780 ECE=0.0167
+I06        trọng số EMA (T08), 1 view                    F1=0.9493 top1=0.9637 ECE=0.0061
+I07_I00    I00 + temperature scaling (T=1.021, khớp trên val) F1=0.9508 top1=0.9643 ECE=0.0059
+I07_I01    I01 + temperature scaling (T=1.012, khớp trên val) F1=0.9499 top1=0.9643 ECE=0.0021
+I08b       FP16 (model.half())                           F1=0.9508 top1=0.9643 ECE=0.0055
+I08c       AMP (autocast fp16)                           F1=0.9508 top1=0.9643 ECE=0.0056
+  latency I00_fp32               b1   p50=7.22 p95=8.57 p99=11.08 ms 139 img/s
+  latency I00_fp32               b32  p50=144.64 p95=148.37 p99=149.74 ms 221 img/s
+  latency I01_hflip_K2           b1   p50=14.15 p95=15.16 p99=15.33 ms 71 img/s
+  latency I01_hflip_K2           b32  p50=295.53 p95=315.79 p99=326.17 ms 108 img/s
+  latency I02b_10crop            b1   p50=68.07 p95=77.77 p99=86.44 ms 15 img/s
+  latency I02b_10crop            b32  p50=2154.00 p95=2826.05 p99=3271.48 ms 15 img/s
+  latency I02c_3scale            b1   p50=38.31 p95=46.74 p99=47.39 ms 26 img/s
+  latency I02c_3scale            b32  p50=929.62 p95=1101.31 p99=1175.30 ms 34 img/s
+  latency I04_res256             b1   p50=13.07 p95=16.50 p99=16.87 ms 77 img/s
+  latency I04_res256             b32  p50=311.61 p95=350.71 p99=366.85 ms 103 img/s
+  latency I04_res288             b1   p50=14.32 p95=20.51 p99=21.31 ms 70 img/s
+  latency I04_res288             b32  p50=358.26 p95=392.48 p99=396.85 ms 89 img/s
+  latency I04_res320             b1   p50=16.24 p95=19.57 p99=19.98 ms 62 img/s
+  latency I04_res320             b32  p50=453.75 p95=594.96 p99=752.69 ms 71 img/s
+  latency I08c_amp               b1   p50=5.65 p95=6.32 p99=6.68 ms 177 img/s
+  latency I08c_amp               b32  p50=81.93 p95=110.89 p99=112.43 ms 391 img/s
+  latency I08b_fp16              b1   p50=4.54 p95=4.90 p99=5.12 ms 220 img/s
+  latency I08b_fp16              b32  p50=79.90 p95=91.11 p99=93.09 ms 400 img/s
+  latency ensemble {1: {'p50': 34.41468749952037, 'p95': 37.49270805001288, 'p99': 37.82054781922852}, 32: {'p50': 877.4053954984993, 'p95': 1315.176171049279, 'p99': 1709.3607396690454}}
+saved logs/step3_inference.json, logs/step3_latency.json
+=== T00 seed1: {'exp_id': 'T00', 'seed': 1, 'fold': 0, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'baseline', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[T00 seed1] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+[T00 seed1] ep01 train_loss=0.9534 val_loss=0.4238 val_F1=0.8202 val_top1=0.8646 t=222s *
+[T00 seed1] ep02 train_loss=0.3471 val_loss=0.2828 val_F1=0.8832 val_top1=0.9106 t=184s *
+[T00 seed1] ep03 train_loss=0.2561 val_loss=0.2352 val_F1=0.8983 val_top1=0.9223 t=170s *
+[T00 seed1] ep04 train_loss=0.1989 val_loss=0.2806 val_F1=0.8774 val_top1=0.9052 t=161s
+[T00 seed1] ep05 train_loss=0.1562 val_loss=0.1770 val_F1=0.9227 val_top1=0.9429 t=166s *
+[T00 seed1] ep06 train_loss=0.1162 val_loss=0.1645 val_F1=0.9257 val_top1=0.9486 t=177s *
+[T00 seed1] ep07 train_loss=0.0942 val_loss=0.1200 val_F1=0.9507 val_top1=0.9640 t=168s *
+[T00 seed1] ep08 train_loss=0.0761 val_loss=0.1234 val_F1=0.9525 val_top1=0.9654 t=183s *
+[T00 seed1] ep09 train_loss=0.0577 val_loss=0.1168 val_F1=0.9551 val_top1=0.9674 t=232s *
+[T00 seed1] ep10 train_loss=0.0594 val_loss=0.1153 val_F1=0.9581 val_top1=0.9694 t=254s *
+python(8913) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+[T00 seed1] DONE best_ep=10 val_F1=0.9581 val_top1=0.9694 32.1 min
+=== T00 seed2: {'exp_id': 'T00', 'seed': 2, 'fold': 0, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'baseline', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+[T00 seed2] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+python(9446) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(9462) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(9463) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(9479) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(9480) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(9496) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(11641) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(11642) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(11643) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(11644) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(11645) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(11646) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+[T00 seed2] ep01 train_loss=0.9520 val_loss=0.3822 val_F1=0.8297 val_top1=0.8732 t=267s *
+[T00 seed2] ep02 train_loss=0.3567 val_loss=0.3126 val_F1=0.8684 val_top1=0.9009 t=239s *
+[T00 seed2] ep03 train_loss=0.2472 val_loss=0.2359 val_F1=0.8912 val_top1=0.9172 t=246s *
+[T00 seed2] ep04 train_loss=0.1986 val_loss=0.1721 val_F1=0.9306 val_top1=0.9480 t=251s *
+[T00 seed2] ep05 train_loss=0.1577 val_loss=0.1724 val_F1=0.9283 val_top1=0.9449 t=244s
+[T00 seed2] ep06 train_loss=0.1334 val_loss=0.1501 val_F1=0.9314 val_top1=0.9517 t=248s *
+Traceback (most recent call last):
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/submissions/2A202602515_DoanDuyBach/code/experiments.py", line 126, in run_one
+    summary = train.run(cfg)
+              ^^^^^^^^^^^^^^
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/submissions/2A202602515_DoanDuyBach/code/train.py", line 439, in run
+    tr = train_one_epoch(model, train_loader, criterion, optimizer, scheduler, scaler, cfg, device,
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/submissions/2A202602515_DoanDuyBach/code/train.py", line 241, in train_one_epoch
+    scaler.step(optimizer)
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/torch/amp/grad_scaler.py", line 478, in step
+    retval = self._maybe_opt_step(optimizer, optimizer_state, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/torch/amp/grad_scaler.py", line 371, in _maybe_opt_step
+    if not sum(v.item() for v in optimizer_state["found_inf_per_device"].values()):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/torch/amp/grad_scaler.py", line 371, in <genexpr>
+    if not sum(v.item() for v in optimizer_state["found_inf_per_device"].values()):
+               ^^^^^^^^
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/torch/utils/data/_utils/signal_handling.py", line 73, in handler
+    _error_if_any_worker_fails()
+RuntimeError: DataLoader worker (pid 9462) is killed by signal: Killed: 9. 
+code/run_queue.sh: line 15: 90406 Terminated: 15          $PY code/experiments.py T00 --seeds 1 2
+=== T09 seed0: {'exp_id': 'T09', 'seed': 0, 'fold': 0, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'mildcrop', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ls', 'label_smoothing': 0.1, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'ls_mildcrop', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+[T09 seed0] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+python(26579) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(26580) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(26581) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(26582) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(26583) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(26584) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+[T09 seed0] ep01 train_loss=1.1314 val_loss=0.4260 val_F1=0.8536 val_top1=0.8872 t=253s *
+[T09 seed0] ep02 train_loss=0.7102 val_loss=0.4097 val_F1=0.8578 val_top1=0.8895 t=239s *
+[T09 seed0] ep03 train_loss=0.6308 val_loss=0.3623 val_F1=0.8929 val_top1=0.9169 t=250s *
+[T09 seed0] ep04 train_loss=0.5979 val_loss=0.2646 val_F1=0.9270 val_top1=0.9446 t=240s *
+[T09 seed0] ep05 train_loss=0.5612 val_loss=0.2347 val_F1=0.9417 val_top1=0.9574 t=197s *
+[T09 seed0] ep06 train_loss=0.5361 val_loss=0.2643 val_F1=0.9217 val_top1=0.9409 t=178s
+[T09 seed0] ep07 train_loss=0.5232 val_loss=0.2073 val_F1=0.9463 val_top1=0.9609 t=174s *
+[T09 seed0] ep08 train_loss=0.5120 val_loss=0.2141 val_F1=0.9466 val_top1=0.9609 t=166s *
+[T09 seed0] ep09 train_loss=0.5064 val_loss=0.2010 val_F1=0.9531 val_top1=0.9660 t=181s *
+[T09 seed0] ep10 train_loss=0.5042 val_loss=0.2010 val_F1=0.9514 val_top1=0.9654 t=163s
+python(44638) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+[T09 seed0] DONE best_ep=9 val_F1=0.9531 val_top1=0.9660 34.2 min
+F01 seed0 là bản sao của T09 seed0 (cấu hình giống hệt, không chạy lại).
+
+=== F01 seed1: {'exp_id': 'F01', 'seed': 1, 'fold': 0, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'mildcrop', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ls', 'label_smoothing': 0.1, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'final_ls_mildcrop', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+[F01 seed1] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+[F01 seed1] ep01 train_loss=1.1664 val_loss=0.5132 val_F1=0.8101 val_top1=0.8618 t=146s *
+[F01 seed1] ep02 train_loss=0.7097 val_loss=0.3077 val_F1=0.9140 val_top1=0.9349 t=161s *
+[F01 seed1] ep03 train_loss=0.6242 val_loss=0.2509 val_F1=0.9242 val_top1=0.9417 t=158s *
+[F01 seed1] ep04 train_loss=0.5850 val_loss=0.2845 val_F1=0.9135 val_top1=0.9352 t=159s
+[F01 seed1] ep05 train_loss=0.5619 val_loss=0.2535 val_F1=0.9296 val_top1=0.9474 t=159s *
+[F01 seed1] ep06 train_loss=0.5358 val_loss=0.2575 val_F1=0.9199 val_top1=0.9412 t=166s
+[F01 seed1] ep07 train_loss=0.5225 val_loss=0.2408 val_F1=0.9340 val_top1=0.9497 t=168s *
+[F01 seed1] ep08 train_loss=0.5101 val_loss=0.2104 val_F1=0.9462 val_top1=0.9603 t=169s *
+[F01 seed1] ep09 train_loss=0.5049 val_loss=0.2122 val_F1=0.9472 val_top1=0.9614 t=171s *
+[F01 seed1] ep10 train_loss=0.5018 val_loss=0.2074 val_F1=0.9496 val_top1=0.9629 t=171s *
+[F01 seed1] DONE best_ep=10 val_F1=0.9496 val_top1=0.9629 27.2 min
+=== F01 seed2: {'exp_id': 'F01', 'seed': 2, 'fold': 0, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'mildcrop', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ls', 'label_smoothing': 0.1, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'final_ls_mildcrop', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+[F01 seed2] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+[F01 seed2] ep01 train_loss=1.1591 val_loss=0.4557 val_F1=0.8371 val_top1=0.8792 t=150s *
+[F01 seed2] ep02 train_loss=0.7023 val_loss=0.3723 val_F1=0.8711 val_top1=0.9003 t=171s *
+[F01 seed2] ep03 train_loss=0.6332 val_loss=0.2960 val_F1=0.9005 val_top1=0.9280 t=172s *
+[F01 seed2] ep04 train_loss=0.5921 val_loss=0.2485 val_F1=0.9409 val_top1=0.9549 t=171s *
+[F01 seed2] ep05 train_loss=0.5592 val_loss=0.2681 val_F1=0.9170 val_top1=0.9380 t=174s
+[F01 seed2] ep06 train_loss=0.5380 val_loss=0.2301 val_F1=0.9427 val_top1=0.9572 t=172s *
+[F01 seed2] ep07 train_loss=0.5245 val_loss=0.2237 val_F1=0.9398 val_top1=0.9546 t=180s
+[F01 seed2] ep08 train_loss=0.5115 val_loss=0.2156 val_F1=0.9468 val_top1=0.9614 t=171s *
+[F01 seed2] ep09 train_loss=0.5081 val_loss=0.2056 val_F1=0.9472 val_top1=0.9620 t=186s *
+[F01 seed2] ep10 train_loss=0.5031 val_loss=0.2041 val_F1=0.9507 val_top1=0.9646 t=172s *
+[F01 seed2] DONE best_ep=10 val_F1=0.9507 val_top1=0.9646 28.7 min
+=== queue end Mon Oct  5 00:40:34 +07 2026

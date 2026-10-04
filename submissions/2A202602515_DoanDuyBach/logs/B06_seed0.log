@@ -1,0 +1,123 @@
+=== B06 seed0: {'exp_id': 'B06', 'seed': 0, 'fold': 0, 'backbone': 'mobilenetv3_large_100', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'mobilenetv3_large', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/admin/.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/logging/__init__.py", line 1163, in emit
+    stream.write(msg + self.terminator)
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/submissions/2A202602515_DoanDuyBach/code/experiments.py", line 58, in write
+    st.write(s)
+ValueError: I/O operation on closed file.
+Call stack:
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/submissions/2A202602515_DoanDuyBach/code/experiments.py", line 105, in <module>
+    main()
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/submissions/2A202602515_DoanDuyBach/code/experiments.py", line 101, in main
+    run_one(exp_id, seed)
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/submissions/2A202602515_DoanDuyBach/code/experiments.py", line 80, in run_one
+    summary = train.run(cfg)
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/submissions/2A202602515_DoanDuyBach/code/train.py", line 384, in run
+    model = build_model(cfg.backbone, True, D.NUM_CLASSES, cfg.drop_rate, cfg.init)
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/submissions/2A202602515_DoanDuyBach/code/model.py", line 33, in build_model
+    model = timm.create_model(name, pretrained=(pretrained and init != "scratch"),
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/timm/models/_factory.py", line 175, in create_model
+    model = create_fn(
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/timm/models/mobilenetv3.py", line 1295, in mobilenetv3_large_100
+    model = _gen_mobilenet_v3('mobilenetv3_large_100', 1.0, pretrained=pretrained, **kwargs)
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/timm/models/mobilenetv3.py", line 669, in _gen_mobilenet_v3
+    model = _create_mnv3(variant, pretrained, **model_kwargs)
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/timm/models/mobilenetv3.py", line 501, in _create_mnv3
+    model = build_model_with_cfg(
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/timm/models/_builder.py", line 459, in build_model_with_cfg
+    load_pretrained(
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/timm/models/_builder.py", line 228, in load_pretrained
+    state_dict = load_state_dict_from_hf(pretrained_loc, weights_only=True, cache_dir=cache_dir)
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/timm/models/_hub.py", line 238, in load_state_dict_from_hf
+    cached_safe_file = hf_hub_download(
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 276, in _inner
+    return fn(*args, **kwargs)
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1047, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1117, in _hf_hub_download_to_cache_dir
+    (url_to_download, etag, commit_hash, expected_size, xet_file_data, head_call_error) = _get_metadata_or_catch_error(
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1762, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1669, in get_hf_file_metadata
+    response = _httpx2_follow_hub_redirects_with_backoff(
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 771, in _httpx2_follow_hub_redirects_with_backoff
+    hf_raise_for_status(response)
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 840, in hf_raise_for_status
+    _warn_on_warning_headers(response)
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 1003, in _warn_on_warning_headers
+    logger.warning(message)
+Message: 'Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.'
+Arguments: ()
+
+model.safetensors: reconstructing file:   0%|          |  0.00B / 22.1MB            [Amodel.safetensors: downloading bytes:           |  0.00B            model.safetensors: downloading bytes:           | 16.4kB            model.safetensors: downloading bytes:           | 51.3kB, 1.49kB/s  model.safetensors: downloading bytes:           | 79.5kB, 4.63kB/s  model.safetensors: downloading bytes:           |  113kB, 7.13kB/s  model.safetensors: downloading bytes:           |  148kB, 9.97kB/s  model.safetensors: downloading bytes:           |  191kB, 12.7kB/s  model.safetensors: downloading bytes: 1         |  252kB, 17.2kB/s  model.safetensors: downloading bytes: 1         |  305kB, 21.5kB/s  model.safetensors: downloading bytes: 1         |  421kB, 28.2kB/s  model.safetensors: downloading bytes: 2         |  482kB, 35.7kB/s  model.safetensors: downloading bytes: 2         |  534kB, 40.7kB/s  model.safetensors: downloading bytes: 2         |  604kB, 44.9kB/s  model.safetensors: downloading bytes: 3         |  670kB, 50.6kB/s  model.safetensors: downloading bytes: 3         |  801kB, 58.2kB/s  model.safetensors: downloading bytes: 3         |  866kB, 66.3kB/s  model.safetensors: downloading bytes: 4         |  948kB, 71.3kB/s  model.safetensors: downloading bytes: 4         | 1.03MB, 77.8kB/s  model.safetensors: downloading bytes: 5         | 1.11MB, 84.2kB/s  model.safetensors: downloading bytes: 5         | 1.21MB, 90.5kB/s  model.safetensors: downloading bytes: 5         | 1.31MB, 98.1kB/s  model.safetensors: downloading bytes: 6         | 1.42MB,  106kB/s  model.safetensors: downloading bytes: 6         | 1.52MB,  115kB/s  model.safetensors: downloading bytes: 7         | 1.62MB,  122kB/s  model.safetensors: downloading bytes: 7         | 1.73MB,  129kB/s  model.safetensors: downloading bytes: 8         | 1.83MB,  138kB/s  model.safetensors: downloading bytes: 9         | 2.05MB,  148kB/s  model.safetensors: downloading bytes: #         | 2.29MB,  166kB/s  model.safetensors: downloading bytes: #1        | 2.46MB,  183kB/s  model.safetensors: downloading bytes: #1        | 2.57MB,  189kB/s  model.safetensors: downloading bytes: #2        | 2.75MB,  197kB/s  model.safetensors: downloading bytes: #3        | 3.03MB,  219kB/s  model.safetensors: downloading bytes: #4        | 3.23MB,  228kB/s  model.safetensors: downloading bytes: #5        | 3.44MB,  241kB/s  model.safetensors: downloading bytes: #6        | 3.65MB,  255kB/s  model.safetensors: downloading bytes: #7        | 3.86MB,  270kB/s  model.safetensors: downloading bytes: #8        | 3.98MB,  279kB/s  model.safetensors: downloading bytes: #8        | 4.16MB,  286kB/s  model.safetensors: downloading bytes: #9        | 4.39MB,  298kB/s  model.safetensors: downloading bytes: ##        | 4.52MB,  313kB/s  model.safetensors: downloading bytes: ##1       | 4.80MB,  323kB/s  model.safetensors: downloading bytes: ##2       | 4.98MB,  335kB/s  model.safetensors: downloading bytes: ##3       | 5.11MB,  344kB/s  model.safetensors: downloading bytes: ##3       | 5.27MB,  352kB/s  model.safetensors: downloading bytes: ##4       | 5.40MB,  362kB/s  model.safetensors: downloading bytes: ##5       | 5.59MB,  366kB/s  model.safetensors: downloading bytes: ##6       | 5.80MB,  381kB/s  model.safetensors: downloading bytes: ##7       | 6.03MB,  389kB/s  model.safetensors: downloading bytes: ##8       | 6.22MB,  404kB/s  model.safetensors: downloading bytes: ##9       | 6.44MB,  415kB/s  model.safetensors: downloading bytes: ##9       | 6.62MB,  423kB/s  model.safetensors: downloading bytes: ###1      | 6.85MB,  441kB/s  model.safetensors: downloading bytes: ###2      | 7.14MB,  451kB/s  model.safetensors: downloading bytes: ###3      | 7.40MB,  468kB/s  model.safetensors: downloading bytes: ###4      | 7.65MB,  481kB/s  model.safetensors: downloading bytes: ###5      | 7.80MB,  486kB/s  model.safetensors: downloading bytes: ###6      | 8.01MB,  494kB/s  model.safetensors: downloading bytes: ###7      | 8.19MB,  506kB/s  model.safetensors: downloading bytes: ###8      | 8.40MB,  521kB/s  model.safetensors: downloading bytes: ###9      | 8.70MB,  525kB/s  model.safetensors: downloading bytes: ####      | 8.96MB,  549kB/s  model.safetensors: downloading bytes: ####2     | 9.32MB,  545kB/s  model.safetensors: downloading bytes: ####3     | 9.50MB,  557kB/s  model.safetensors: downloading bytes: ####4     | 9.81MB,  567kB/s  model.safetensors: downloading bytes: ####5     | 10.0MB,  582kB/s  model.safetensors: downloading bytes: ####7     | 10.4MB,  599kB/s  model.safetensors: downloading bytes: ####9     | 10.9MB,  621kB/s  model.safetensors: downloading bytes: #####1    | 11.3MB,  647kB/s  model.safetensors: downloading bytes: #####2    | 11.5MB,  655kB/s  model.safetensors: downloading bytes: #####4    | 11.9MB,  676kB/s  model.safetensors: downloading bytes: #####5    | 12.2MB,  691kB/s  model.safetensors: downloading bytes: #####6    | 12.4MB,  707kB/s  model.safetensors: downloading bytes: #####8    | 12.9MB,  728kB/s  model.safetensors: downloading bytes: ######1   | 13.5MB,  748kB/s  model.safetensors: downloading bytes: ######2   | 13.7MB,  774kB/s  model.safetensors: downloading bytes: ######3   | 14.0MB,  787kB/s  model.safetensors: downloading bytes: ######4   | 14.3MB,  800kB/s  model.safetensors: downloading bytes: ######6   | 14.6MB,  816kB/s  model.safetensors: downloading bytes: ######8   | 15.0MB,  831kB/s  model.safetensors: downloading bytes: #######   | 15.5MB,  856kB/s  model.safetensors: downloading bytes: #######2  | 16.0MB,  867kB/s  model.safetensors: downloading bytes: #######4  | 16.4MB,  903kB/s  model.safetensors: downloading bytes: #######5  | 16.7MB,  911kB/s  model.safetensors: downloading bytes: #######7  | 17.1MB,  928kB/s  model.safetensors: downloading bytes: ########1 | 17.9MB,  951kB/s  model.safetensors: downloading bytes: ########2 | 18.2MB,  994kB/s  model.safetensors: downloading bytes: ########4 | 18.6MB, 1.01MB/s  model.safetensors: downloading bytes: ########7 | 19.3MB, 1.05MB/s  model.safetensors: downloading bytes: ########9 | 19.7MB, 1.07MB/s  model.safetensors: downloading bytes: #########2| 20.4MB, 1.09MB/s  
+model.safetensors: reconstructing file: 100%|##########| 22.1MB / 22.1MB            [Amodel.safetensors: downloading bytes: ##########| 20.8MB, 1.15MB/s  model.safetensors: downloading bytes: ##########| 20.8MB, 1.15MB/s  
+model.safetensors: reconstructing file: 100%|##########| 22.1MB / 22.1MB, 1.67MB/s  
+[B06 seed0] mobilenetv3_large_100.ra_in1k params=4.21M GMAC=0.22 device=mps amp=torch.float16
+[B06 seed0] ep01 train_loss=1.8454 val_loss=1.4607 val_F1=0.3554 val_top1=0.5184 t=194s *
+[B06 seed0] ep02 train_loss=0.7859 val_loss=1.0796 val_F1=0.4818 val_top1=0.6372 t=207s *
+[B06 seed0] ep03 train_loss=0.5345 val_loss=0.8991 val_F1=0.5839 val_top1=0.7087 t=260s *
+[B06 seed0] ep04 train_loss=0.4560 val_loss=0.7959 val_F1=0.6376 val_top1=0.7469 t=172s *
+Traceback (most recent call last):
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/submissions/2A202602515_DoanDuyBach/code/experiments.py", line 80, in run_one
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/submissions/2A202602515_DoanDuyBach/code/train.py", line 420, in run
+    tr = train_one_epoch(model, train_loader, criterion, optimizer, scheduler, scaler, cfg, device,
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/submissions/2A202602515_DoanDuyBach/code/train.py", line 218, in train_one_epoch
+    for i, (x, y, _) in enumerate(loader):
+                        ^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 725, in __next__
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 1507, in _next_data
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 1466, in _get_data
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 1293, in _try_get_data
+  File "/Users/admin/.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/multiprocessing/queues.py", line 122, in get
+    return _ForkingPickler.loads(res)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/torch/multiprocessing/reductions.py", line 555, in rebuild_storage_filename
+RuntimeError: Shared memory manager connection has timed out
+Exception raised from recv at /Users/runner/work/pytorch/pytorch/torch/lib/libshm/../../../torch/lib/libshm/socket.h:67 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>) + 52 (0x10cf53f18 in libc10.dylib)
+frame #1: c10::detail::torchCheckFail(char const*, char const*, unsigned int, char const*) + 200 (0x10cf516a4 in libc10.dylib)
+frame #2: Socket::recv(void*, unsigned long) + 324 (0x10b77a7e4 in libshm.dylib)
+frame #3: THManagedMapAllocatorInit::THManagedMapAllocatorInit(char const*, char const*) + 1780 (0x10b7779d0 in libshm.dylib)
+frame #4: THManagedMapAllocator::makeDataPtr(char const*, char const*, int, unsigned long) + 68 (0x10b778114 in libshm.dylib)
+frame #5: THPStorage_newSharedFilename(_object*, _object*) + 276 (0x10f0b5204 in libtorch_python.dylib)
+frame #6: cfunction_call + 108 (0x1043db2b4 in python3.12)
+frame #7: _PyEval_EvalFrameDefault + 224160 (0x10423bbdc in python3.12)
+frame #8: load + 2408 (0x1041bc1b4 in python3.12)
+frame #9: _pickle_loads + 376 (0x104290668 in python3.12)
+frame #10: _PyEval_EvalFrameDefault + 234648 (0x10423e4d4 in python3.12)
+frame #11: vectorcall_method + 192 (0x104153d9c in python3.12)
+frame #12: slot_tp_iternext + 52 (0x104427b34 in python3.12)
+frame #13: enum_next + 48 (0x1043e67f4 in python3.12)
+frame #14: _PyEval_EvalFrameDefault + 203492 (0x104236b20 in python3.12)
+frame #15: PyEval_EvalCode + 216 (0x1042a2134 in python3.12)
+frame #16: run_mod + 228 (0x1042a1f18 in python3.12)
+frame #17: pyrun_file + 156 (0x1043a8230 in python3.12)
+frame #18: _PyRun_SimpleFileObject + 288 (0x1043a7a84 in python3.12)
+frame #19: _PyRun_AnyFileObject + 80 (0x1043a781c in python3.12)
+frame #20: pymain_run_file_obj + 164 (0x1043a760c in python3.12)
+frame #21: pymain_run_file + 72 (0x1043a74b0 in python3.12)
+frame #22: Py_RunMain + 1068 (0x104333a50 in python3.12)
+frame #23: pymain_main + 472 (0x1042f92fc in python3.12)
+frame #24: main + 44 (0x1042f9118 in python3.12)
+frame #25: start + 6992 (0x186183e00 in dyld)
+
+=== B06 seed0: {'exp_id': 'B06', 'seed': 0, 'fold': 0, 'backbone': 'mobilenetv3_large_100', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'mobilenetv3_large', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[B06 seed0] mobilenetv3_large_100.ra_in1k params=4.21M GMAC=0.22 device=mps amp=torch.float16
+[B06 seed0] ep01 train_loss=1.8454 val_loss=1.4607 val_F1=0.3554 val_top1=0.5184 t=84s *
+[B06 seed0] ep02 train_loss=0.7859 val_loss=1.0796 val_F1=0.4818 val_top1=0.6372 t=80s *
+[B06 seed0] ep03 train_loss=0.5345 val_loss=0.8991 val_F1=0.5839 val_top1=0.7087 t=94s *
+[B06 seed0] ep04 train_loss=0.4560 val_loss=0.7959 val_F1=0.6376 val_top1=0.7469 t=107s *
+[B06 seed0] ep05 train_loss=0.3759 val_loss=0.7262 val_F1=0.6713 val_top1=0.7658 t=105s *
+[B06 seed0] ep06 train_loss=0.3232 val_loss=0.6791 val_F1=0.6848 val_top1=0.7755 t=123s *
+[B06 seed0] ep07 train_loss=0.2950 val_loss=0.7103 val_F1=0.6732 val_top1=0.7661 t=114s
+[B06 seed0] ep08 train_loss=0.2748 val_loss=0.6863 val_F1=0.6843 val_top1=0.7715 t=120s
+[B06 seed0] ep09 train_loss=0.2572 val_loss=0.7495 val_F1=0.6570 val_top1=0.7561 t=113s
+[B06 seed0] ep10 train_loss=0.2590 val_loss=0.6598 val_F1=0.7050 val_top1=0.7858 t=113s *
+[B06 seed0] DONE best_ep=10 val_F1=0.7050 val_top1=0.7858 17.6 min

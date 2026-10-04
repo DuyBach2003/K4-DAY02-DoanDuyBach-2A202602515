@@ -1,0 +1,68 @@
+=== B06 seed0: {'exp_id': 'B06', 'seed': 0, 'fold': 0, 'backbone': 'mobilenetv3_large_100', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'mobilenetv3_large', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[B06 seed0] mobilenetv3_large_100.ra_in1k params=4.21M GMAC=0.22 device=mps amp=torch.float16
+[B06 seed0] ep01 train_loss=1.8454 val_loss=1.4607 val_F1=0.3554 val_top1=0.5184 t=84s *
+[B06 seed0] ep02 train_loss=0.7859 val_loss=1.0796 val_F1=0.4818 val_top1=0.6372 t=80s *
+[B06 seed0] ep03 train_loss=0.5345 val_loss=0.8991 val_F1=0.5839 val_top1=0.7087 t=94s *
+[B06 seed0] ep04 train_loss=0.4560 val_loss=0.7959 val_F1=0.6376 val_top1=0.7469 t=107s *
+[B06 seed0] ep05 train_loss=0.3759 val_loss=0.7262 val_F1=0.6713 val_top1=0.7658 t=105s *
+[B06 seed0] ep06 train_loss=0.3232 val_loss=0.6791 val_F1=0.6848 val_top1=0.7755 t=123s *
+[B06 seed0] ep07 train_loss=0.2950 val_loss=0.7103 val_F1=0.6732 val_top1=0.7661 t=114s
+[B06 seed0] ep08 train_loss=0.2748 val_loss=0.6863 val_F1=0.6843 val_top1=0.7715 t=120s
+[B06 seed0] ep09 train_loss=0.2572 val_loss=0.7495 val_F1=0.6570 val_top1=0.7561 t=113s
+[B06 seed0] ep10 train_loss=0.2590 val_loss=0.6598 val_F1=0.7050 val_top1=0.7858 t=113s *
+[B06 seed0] DONE best_ep=10 val_F1=0.7050 val_top1=0.7858 17.6 min
+=== B01 seed0: {'exp_id': 'B01', 'seed': 0, 'fold': 0, 'backbone': 'resnet50', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'resnet50', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+[B01 seed0] resnet50.a1_in1k params=23.53M GMAC=4.11 device=mps amp=torch.float16
+[B01 seed0] ep01 train_loss=1.6527 val_loss=1.2680 val_F1=0.2136 val_top1=0.5624 t=266s *
+[B01 seed0] ep02 train_loss=0.9732 val_loss=0.7940 val_F1=0.5818 val_top1=0.7141 t=269s *
+[B01 seed0] ep03 train_loss=0.7104 val_loss=0.6462 val_F1=0.6810 val_top1=0.7715 t=359s *
+[B01 seed0] ep04 train_loss=0.5860 val_loss=0.5776 val_F1=0.7204 val_top1=0.7981 t=299s *
+[B01 seed0] ep05 train_loss=0.5095 val_loss=0.5307 val_F1=0.7504 val_top1=0.8186 t=342s *
+[B01 seed0] ep06 train_loss=0.4716 val_loss=0.5005 val_F1=0.7633 val_top1=0.8263 t=314s *
+[B01 seed0] ep07 train_loss=0.4493 val_loss=0.5042 val_F1=0.7612 val_top1=0.8260 t=273s
+[B01 seed0] ep08 train_loss=0.4244 val_loss=0.4878 val_F1=0.7696 val_top1=0.8318 t=238s *
+[B01 seed0] ep09 train_loss=0.4127 val_loss=0.4968 val_F1=0.7700 val_top1=0.8329 t=262s *
+[B01 seed0] ep10 train_loss=0.4125 val_loss=0.4740 val_F1=0.7773 val_top1=0.8369 t=252s *
+python(33599) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+[B01 seed0] DONE best_ep=10 val_F1=0.7773 val_top1=0.8369 48.2 min
+=== B03 seed0: {'exp_id': 'B03', 'seed': 0, 'fold': 0, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'deit_small', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+[B03 seed0] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+python(34243) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(34261) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(34262) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(34263) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(34264) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(34302) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(36444) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(36445) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(36446) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(36447) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(36463) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(36464) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+[B03 seed0] ep01 train_loss=0.9207 val_loss=0.4444 val_F1=0.7983 val_top1=0.8466 t=235s *
+[B03 seed0] ep02 train_loss=0.3438 val_loss=0.4105 val_F1=0.8091 val_top1=0.8552 t=262s *
+[B03 seed0] ep03 train_loss=0.2446 val_loss=0.2494 val_F1=0.8978 val_top1=0.9177 t=245s *
+[B03 seed0] ep04 train_loss=0.1999 val_loss=0.1780 val_F1=0.9231 val_top1=0.9443 t=434s *
+[B03 seed0] ep05 train_loss=0.1537 val_loss=0.1637 val_F1=0.9207 val_top1=0.9446 t=329s
+[B03 seed0] ep06 train_loss=0.1187 val_loss=0.1559 val_F1=0.9316 val_top1=0.9492 t=821s *
+[B03 seed0] ep07 train_loss=0.0950 val_loss=0.1234 val_F1=0.9454 val_top1=0.9614 t=512s *
+[B03 seed0] ep08 train_loss=0.0746 val_loss=0.1327 val_F1=0.9432 val_top1=0.9594 t=710s
+[B03 seed0] ep09 train_loss=0.0642 val_loss=0.1195 val_F1=0.9488 val_top1=0.9629 t=467s *
+[B03 seed0] ep10 train_loss=0.0580 val_loss=0.1201 val_F1=0.9508 val_top1=0.9643 t=368s *
+python(80783) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+[B03 seed0] DONE best_ep=10 val_F1=0.9508 val_top1=0.9643 73.7 min
+=== B04 seed0: {'exp_id': 'B04', 'seed': 0, 'fold': 0, 'backbone': 'swin_tiny_patch4_window7_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'swin_tiny', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+[B04 seed0] swin_tiny_patch4_window7_224.ms_in1k params=27.53M GMAC=4.51 device=mps amp=torch.float16
+python(80814) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(80817) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(80818) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(80819) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(80820) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(80821) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(80932) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(80933) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(80934) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(80935) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(80936) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(80937) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.

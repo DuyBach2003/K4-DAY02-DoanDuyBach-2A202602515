@@ -1,0 +1,184 @@
+{
+  "split_check": {
+    "n": {
+      "train": 10501,
+      "val": 3501,
+      "test": 3507
+    },
+    "fraction": {
+      "train": 0.5997,
+      "val": 0.2,
+      "test": 0.2003
+    },
+    "per_class": {
+      "train": [
+        675,
+        637,
+        618,
+        613,
+        637,
+        605,
+        644,
+        609,
+        5463
+      ],
+      "val": [
+        225,
+        213,
+        206,
+        204,
+        212,
+        202,
+        215,
+        203,
+        1821
+      ],
+      "test": [
+        226,
+        213,
+        207,
+        205,
+        213,
+        202,
+        215,
+        204,
+        1822
+      ]
+    },
+    "overlap": {
+      "train&val": 0,
+      "train&test": 0,
+      "val&test": 0
+    },
+    "union": 17509,
+    "missing_files": 0,
+    "images_on_disk": 17509
+  },
+  "per_class_table": [
+    {
+      "class": "Chinee Apple",
+      "train": 675,
+      "val": 225,
+      "test": 226,
+      "total": 1126,
+      "paper_table1": 1125,
+      "diff_vs_paper": 1
+    },
+    {
+      "class": "Lantana",
+      "train": 637,
+      "val": 213,
+      "test": 213,
+      "total": 1063,
+      "paper_table1": 1064,
+      "diff_vs_paper": -1
+    },
+    {
+      "class": "Parkinsonia",
+      "train": 618,
+      "val": 206,
+      "test": 207,
+      "total": 1031,
+      "paper_table1": 1031,
+      "diff_vs_paper": 0
+    },
+    {
+      "class": "Parthenium",
+      "train": 613,
+      "val": 204,
+      "test": 205,
+      "total": 1022,
+      "paper_table1": 1022,
+      "diff_vs_paper": 0
+    },
+    {
+      "class": "Prickly Acacia",
+      "train": 637,
+      "val": 212,
+      "test": 213,
+      "total": 1062,
+      "paper_table1": 1062,
+      "diff_vs_paper": 0
+    },
+    {
+      "class": "Rubber Vine",
+      "train": 605,
+      "val": 202,
+      "test": 202,
+      "total": 1009,
+      "paper_table1": 1009,
+      "diff_vs_paper": 0
+    },
+    {
+      "class": "Siam Weed",
+      "train": 644,
+      "val": 215,
+      "test": 215,
+      "total": 1074,
+      "paper_table1": 1074,
+      "diff_vs_paper": 0
+    },
+    {
+      "class": "Snake Weed",
+      "train": 609,
+      "val": 203,
+      "test": 204,
+      "total": 1016,
+      "paper_table1": 1016,
+      "diff_vs_paper": 0
+    },
+    {
+      "class": "Negatives",
+      "train": 5463,
+      "val": 1821,
+      "test": 1822,
+      "total": 9106,
+      "paper_table1": 9106,
+      "diff_vs_paper": 0
+    }
+  ],
+  "imbalance_ratio_max_min": 9.024777006937562,
+  "negatives_share": 0.5200753897995317,
+  "image_stats": {
+    "sizes": [
+      [
+        256,
+        256
+      ]
+    ],
+    "modes": [
+      "RGB"
+    ],
+    "train_sample_mean": [
+      0.3411000072956085,
+      0.3517000079154968,
+      0.3425000011920929
+    ],
+    "train_sample_std": [
+      0.227400004863739,
+      0.22669999301433563,
+      0.22439999878406525
+    ],
+    "imagenet_mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "imagenet_std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "initial_loss": {
+    "resnet50_pretrained_new_head": 2.206522226333618,
+    "ln9": 2.1972245773362196
+  },
+  "overfit_one_batch": {
+    "n_images": 16,
+    "steps": 60,
+    "loss_first": 2.188326358795166,
+    "loss_last": 0.009466178715229034,
+    "train_acc_eval_mode": 1.0
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "0": {
+    "exp": "F01",
+    "seed": 0,
+    "views": "none",
+    "eval_mode": "full",
+    "img_size": 288,
+    "precise_bn": false,
+    "temperature": 0.6386907814438205,
+    "val_macro_f1": 0.9618191875705855,
+    "test_macro_f1": 0.9651368222876372,
+    "test_top1": 0.9734816082121471,
+    "test_ece": 0.008143472303559916,
+    "time": "2026-10-05 01:04:26"
+  },
+  "1": {
+    "exp": "F01",
+    "seed": 1,
+    "views": "none",
+    "eval_mode": "full",
+    "img_size": 288,
+    "precise_bn": false,
+    "temperature": 0.6157714172940385,
+    "val_macro_f1": 0.9679400235670893,
+    "test_macro_f1": 0.9645883563324049,
+    "test_top1": 0.9726261762189906,
+    "test_ece": 0.009517784010230347,
+    "time": "2026-10-05 01:06:09"
+  },
+  "2": {
+    "exp": "F01",
+    "seed": 2,
+    "views": "none",
+    "eval_mode": "full",
+    "img_size": 288,
+    "precise_bn": false,
+    "temperature": 0.6075336845401188,
+    "val_macro_f1": 0.9701890287176236,
+    "test_macro_f1": 0.9650710272963161,
+    "test_top1": 0.973766752209866,
+    "test_ece": 0.010162070510255519,
+    "time": "2026-10-05 01:07:57"
+  }
+}

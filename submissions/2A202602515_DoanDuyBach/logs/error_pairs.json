@@ -1,0 +1,56 @@
+{
+  "exp": "F01",
+  "seed": 0,
+  "top_pairs": [
+    [
+      "Prickly Acacia",
+      "Negatives",
+      8
+    ],
+    [
+      "Chinee Apple",
+      "Snake Weed",
+      7
+    ],
+    [
+      "Rubber Vine",
+      "Negatives",
+      7
+    ],
+    [
+      "Siam Weed",
+      "Negatives",
+      7
+    ],
+    [
+      "Negatives",
+      "Siam Weed",
+      6
+    ],
+    [
+      "Snake Weed",
+      "Negatives",
+      5
+    ],
+    [
+      "Negatives",
+      "Prickly Acacia",
+      5
+    ],
+    [
+      "Chinee Apple",
+      "Negatives",
+      4
+    ],
+    [
+      "Snake Weed",
+      "Chinee Apple",
+      4
+    ],
+    [
+      "Negatives",
+      "Rubber Vine",
+      4
+    ]
+  ]
+}

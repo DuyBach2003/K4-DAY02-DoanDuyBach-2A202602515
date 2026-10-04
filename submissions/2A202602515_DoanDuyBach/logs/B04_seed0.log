@@ -1,0 +1,16 @@
+=== B04 seed0: {'exp_id': 'B04', 'seed': 0, 'fold': 0, 'backbone': 'swin_tiny_patch4_window7_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'swin_tiny', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+[B04 seed0] swin_tiny_patch4_window7_224.ms_in1k params=27.53M GMAC=4.51 device=mps amp=torch.float16
+=== B04 seed0: {'exp_id': 'B04', 'seed': 0, 'fold': 0, 'backbone': 'swin_tiny_patch4_window7_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'swin_tiny', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[B04 seed0] swin_tiny_patch4_window7_224.ms_in1k params=27.53M GMAC=4.51 device=mps amp=torch.float16
+[B04 seed0] ep01 train_loss=0.9867 val_loss=0.4255 val_F1=0.8232 val_top1=0.8523 t=156s *
+[B04 seed0] ep02 train_loss=0.3636 val_loss=0.2705 val_F1=0.8777 val_top1=0.9143 t=166s *
+[B04 seed0] ep03 train_loss=0.2664 val_loss=0.2634 val_F1=0.8864 val_top1=0.9126 t=186s *
+[B04 seed0] ep04 train_loss=0.2189 val_loss=0.2106 val_F1=0.9109 val_top1=0.9346 t=213s *
+[B04 seed0] ep05 train_loss=0.1665 val_loss=0.1891 val_F1=0.9181 val_top1=0.9403 t=208s *
+[B04 seed0] ep06 train_loss=0.1304 val_loss=0.1565 val_F1=0.9404 val_top1=0.9552 t=216s *
+[B04 seed0] ep07 train_loss=0.1131 val_loss=0.1315 val_F1=0.9454 val_top1=0.9617 t=234s *
+[B04 seed0] ep08 train_loss=0.0847 val_loss=0.1542 val_F1=0.9390 val_top1=0.9540 t=238s
+[B04 seed0] ep09 train_loss=0.0730 val_loss=0.1301 val_F1=0.9490 val_top1=0.9620 t=246s *
+[B04 seed0] ep10 train_loss=0.0677 val_loss=0.1272 val_F1=0.9513 val_top1=0.9640 t=223s *
+[B04 seed0] DONE best_ep=10 val_F1=0.9513 val_top1=0.9640 34.9 min

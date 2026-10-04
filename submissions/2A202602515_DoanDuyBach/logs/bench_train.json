@@ -1,0 +1,36 @@
+{
+  "device": "mps",
+  "torch": "2.14.1",
+  "results": {
+    "B01": {
+      "backbone": "resnet50",
+      "train_img_per_s": 35.82092517823682,
+      "est_epoch_s_10501_imgs": 293.1526739677828
+    },
+    "B02": {
+      "backbone": "convnext_tiny",
+      "train_img_per_s": 30.090530239749206,
+      "est_epoch_s_10501_imgs": 348.9802245534481
+    },
+    "B03": {
+      "backbone": "deit_small_patch16_224",
+      "train_img_per_s": 57.56295751729747,
+      "est_epoch_s_10501_imgs": 182.4263459160257
+    },
+    "B04": {
+      "backbone": "swin_tiny_patch4_window7_224",
+      "train_img_per_s": 48.724859173514844,
+      "est_epoch_s_10501_imgs": 215.51627194251557
+    },
+    "B05": {
+      "backbone": "efficientnet_b0",
+      "train_img_per_s": 59.48082970909901,
+      "est_epoch_s_10501_imgs": 176.54427571634264
+    },
+    "B06": {
+      "backbone": "mobilenetv3_large_100",
+      "train_img_per_s": 111.38421071195916,
+      "est_epoch_s_10501_imgs": 94.27727622145392
+    }
+  }
+}

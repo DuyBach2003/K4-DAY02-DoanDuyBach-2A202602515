@@ -1,0 +1,15 @@
+=== D01 seed0: {'exp_id': 'D01', 'seed': 0, 'fold': 0, 'backbone': 'mobilenetv3_large_100', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': False, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'mobilenetv3_fp32', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+[D01 seed0] mobilenetv3_large_100.ra_in1k params=4.21M GMAC=0.22 device=mps amp=fp32
+=== D01 seed0: {'exp_id': 'D01', 'seed': 0, 'fold': 0, 'backbone': 'mobilenetv3_large_100', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': False, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'mobilenetv3_fp32', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+[D01 seed0] mobilenetv3_large_100.ra_in1k params=4.21M GMAC=0.22 device=mps amp=fp32
+[D01 seed0] ep01 train_loss=1.8454 val_loss=1.4587 val_F1=0.3537 val_top1=0.5176 t=96s *
+[D01 seed0] ep02 train_loss=0.7857 val_loss=1.0828 val_F1=0.4791 val_top1=0.6352 t=109s *
+[D01 seed0] ep03 train_loss=0.5345 val_loss=0.9087 val_F1=0.5777 val_top1=0.7041 t=109s *
+[D01 seed0] ep04 train_loss=0.4560 val_loss=0.8119 val_F1=0.6308 val_top1=0.7409 t=105s *
+[D01 seed0] ep05 train_loss=0.3764 val_loss=0.7486 val_F1=0.6568 val_top1=0.7558 t=109s *
+[D01 seed0] ep06 train_loss=0.3235 val_loss=0.6899 val_F1=0.6742 val_top1=0.7681 t=102s *
+[D01 seed0] ep07 train_loss=0.2952 val_loss=0.7198 val_F1=0.6677 val_top1=0.7652 t=104s
+[D01 seed0] ep08 train_loss=0.2744 val_loss=0.6911 val_F1=0.6774 val_top1=0.7701 t=110s *
+[D01 seed0] ep09 train_loss=0.2574 val_loss=0.7529 val_F1=0.6484 val_top1=0.7512 t=105s
+[D01 seed0] ep10 train_loss=0.2585 val_loss=0.6649 val_F1=0.6992 val_top1=0.7818 t=103s *
+[D01 seed0] DONE best_ep=10 val_F1=0.6992 val_top1=0.7818 17.6 min

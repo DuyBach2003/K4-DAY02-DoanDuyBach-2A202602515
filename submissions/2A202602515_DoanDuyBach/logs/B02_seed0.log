@@ -1,0 +1,29 @@
+=== B02 seed0: {'exp_id': 'B02', 'seed': 0, 'fold': 0, 'backbone': 'convnext_tiny', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'convnext_tiny', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+[B02 seed0] convnext_tiny.in12k_ft_in1k params=27.83M GMAC=4.47 device=mps amp=torch.float16
+[B02 seed0] ep01 train_loss=0.7563 val_loss=0.4697 val_F1=0.7724 val_top1=0.8320 t=317s *
+[B02 seed0] ep02 train_loss=0.3083 val_loss=0.2399 val_F1=0.8982 val_top1=0.9229 t=327s *
+[B02 seed0] ep03 train_loss=0.2259 val_loss=0.2261 val_F1=0.9114 val_top1=0.9277 t=313s *
+=== B02 seed0: {'exp_id': 'B02', 'seed': 0, 'fold': 0, 'backbone': 'convnext_tiny', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'convnext_tiny', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[B02 seed0] convnext_tiny.in12k_ft_in1k params=27.83M GMAC=4.47 device=mps amp=torch.float16
+Traceback (most recent call last):
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/submissions/2A202602515_DoanDuyBach/code/experiments.py", line 118, in run_one
+    summary = train.run(cfg)
+              ^^^^^^^^^^^^^^
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/submissions/2A202602515_DoanDuyBach/code/train.py", line 433, in run
+    torch.set_rng_state(ck["torch_rng"])
+  File "/Users/admin/Desktop/K4-DAY02-DoanDuyBach-2A202602515/.venv/lib/python3.12/site-packages/torch/random.py", line 36, in set_rng_state
+    default_generator.set_state(new_state)
+TypeError: RNG state must be a torch.ByteTensor
+=== B02 seed0: {'exp_id': 'B02', 'seed': 0, 'fold': 0, 'backbone': 'convnext_tiny', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'convnext_tiny', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[B02 seed0] convnext_tiny.in12k_ft_in1k params=27.83M GMAC=4.47 device=mps amp=torch.float16
+[B02 seed0] RESUME từ epoch 4 (last.pt)
+[B02 seed0] ep04 train_loss=0.1550 val_loss=0.1895 val_F1=0.9259 val_top1=0.9434 t=248s *
+[B02 seed0] ep05 train_loss=0.0912 val_loss=0.1794 val_F1=0.9346 val_top1=0.9492 t=266s *
+[B02 seed0] ep06 train_loss=0.0591 val_loss=0.1340 val_F1=0.9561 val_top1=0.9646 t=282s *
+[B02 seed0] ep07 train_loss=0.1025 val_loss=0.1020 val_F1=0.9622 val_top1=0.9712 t=322s *
+[B02 seed0] ep08 train_loss=0.0663 val_loss=0.0944 val_F1=0.9666 val_top1=0.9743 t=324s *
+[B02 seed0] ep09 train_loss=0.0531 val_loss=0.0946 val_F1=0.9663 val_top1=0.9743 t=312s
+[B02 seed0] ep10 train_loss=0.0511 val_loss=0.0908 val_F1=0.9688 val_top1=0.9766 t=312s *
+[B02 seed0] DONE best_ep=10 val_F1=0.9688 val_top1=0.9766 50.5 min

@@ -1,0 +1,34 @@
+{
+  "resnet50/mps_fp32": {
+    "loss": 2.179966449737549,
+    "loss_cpu": 2.179966449737549,
+    "out_maxdiff": 9.797513484954834e-06,
+    "grad_cosine": 1.0106844902038574,
+    "grad_norm_ratio": 0.9997561573982239,
+    "bn_running_mean_maxdiff": 9.5367431640625e-07
+  },
+  "resnet50/mps_fp16": {
+    "loss": 2.1804847717285156,
+    "loss_cpu": 2.179966449737549,
+    "out_maxdiff": 0.00580802746117115,
+    "grad_cosine": 0.8947398662567139,
+    "grad_norm_ratio": 0.9969696998596191,
+    "bn_running_mean_maxdiff": 0.0003485679626464844
+  },
+  "efficientnet_b0/mps_fp32": {
+    "loss": 3.908102512359619,
+    "loss_cpu": 3.908104419708252,
+    "out_maxdiff": 4.57763671875e-05,
+    "grad_cosine": 1.0016365051269531,
+    "grad_norm_ratio": 1.0000004768371582,
+    "bn_running_mean_maxdiff": 9.5367431640625e-07
+  },
+  "efficientnet_b0/mps_fp16": {
+    "loss": 3.898367166519165,
+    "loss_cpu": 3.908104419708252,
+    "out_maxdiff": 0.11087867617607117,
+    "grad_cosine": 1.001230001449585,
+    "grad_norm_ratio": 0.9984381794929504,
+    "bn_running_mean_maxdiff": 0.0007342100143432617
+  }
+}

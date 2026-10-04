@@ -1,0 +1,118 @@
+=== post start Mon Oct  5 00:40:55 +07 2026
+skip T00 seed1 (đã có summary.json)
+=== T00 seed2: {'exp_id': 'T00', 'seed': 2, 'fold': 0, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'baseline', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+[T00 seed2] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+[T00 seed2] RESUME từ epoch 7 (last.pt)
+[T00 seed2] ep07 train_loss=0.0805 val_loss=0.1306 val_F1=0.9449 val_top1=0.9603 t=150s *
+[T00 seed2] ep08 train_loss=0.0381 val_loss=0.1235 val_F1=0.9454 val_top1=0.9606 t=169s *
+[T00 seed2] ep09 train_loss=0.0275 val_loss=0.1167 val_F1=0.9478 val_top1=0.9634 t=164s *
+[T00 seed2] ep10 train_loss=0.0232 val_loss=0.1177 val_F1=0.9462 val_top1=0.9620 t=167s
+[T00 seed2] DONE best_ep=9 val_F1=0.9478 val_top1=0.9634 35.9 min
+skip T09 seed0 (đã có summary.json)
+skip F01 seed1 (đã có summary.json)
+skip F01 seed2 (đã có summary.json)
+skip T00 seed1 (đã có summary.json)
+skip T00 seed2 (đã có summary.json)
+skip T09 seed0 (đã có summary.json)
+skip F01 seed1 (đã có summary.json)
+skip F01 seed2 (đã có summary.json)
+skip T00 seed1 (đã có summary.json)
+skip T00 seed2 (đã có summary.json)
+skip T09 seed0 (đã có summary.json)
+skip F01 seed1 (đã có summary.json)
+skip F01 seed2 (đã có summary.json)
+B01 {"backbone": "resnet50", "before": {"macro_f1": 0.7768411170895312, "top1": 0.8366181091116823, "ece": 0.01566101459563376}, "after_precise_bn": {"macro_f1": 0.8177681482372168, "top1": 0.8637532133676092, "ece": 0.016933619201404664}, "n_bn": 53, "calibration_images": 10501}
+B05 {"backbone": "efficientnet_b0", "before": {"macro_f1": 0.7660887520222311, "top1": 0.8269065981148244, "ece": 0.03605224987637208}, "after_precise_bn": {"macro_f1": 0.8640412992407709, "top1": 0.8991716652385033, "ece": 0.02496134837298216}, "n_bn": 49, "calibration_images": 10501}
+B06 {"backbone": "mobilenetv3_large_100", "before": {"macro_f1": 0.7068366842251657, "top1": 0.7872036560982576, "ece": 0.026286637040759023}, "after_precise_bn": {"macro_f1": 0.8758277665639715, "top1": 0.9074550128534704, "ece": 0.01696952697346125}, "n_bn": 46, "calibration_images": 10501}
+{"exp": "T00", "seed": 0, "views": "none", "eval_mode": "crop", "img_size": 224, "precise_bn": false, "temperature": 1.0, "val_macro_f1": 0.9507544566343044, "test_macro_f1": 0.9496561544289417, "test_top1": 0.9603649843170802, "test_ece": 0.006344593149003434, "time": "2026-10-05 01:00:22"}
+{"exp": "T00", "seed": 1, "views": "none", "eval_mode": "crop", "img_size": 224, "precise_bn": false, "temperature": 1.0, "val_macro_f1": 0.9581252061407588, "test_macro_f1": 0.9484489182590858, "test_top1": 0.960650128314799, "test_ece": 0.005998663788450121, "time": "2026-10-05 01:01:35"}
+{"exp": "T00", "seed": 2, "views": "none", "eval_mode": "crop", "img_size": 224, "precise_bn": false, "temperature": 1.0, "val_macro_f1": 0.9478039452513034, "test_macro_f1": 0.9544056407848576, "test_top1": 0.9652124322783006, "test_ece": 0.009911777604569502, "time": "2026-10-05 01:02:47"}
+{"exp": "F01", "seed": 0, "views": "none", "eval_mode": "full", "img_size": 288, "precise_bn": false, "temperature": 0.6386907814438205, "val_macro_f1": 0.9618191875705855, "test_macro_f1": 0.9651368222876372, "test_top1": 0.9734816082121471, "test_ece": 0.008143472303559916, "time": "2026-10-05 01:04:26"}
+{"exp": "F01", "seed": 1, "views": "none", "eval_mode": "full", "img_size": 288, "precise_bn": false, "temperature": 0.6157714172940385, "val_macro_f1": 0.9679400235670893, "test_macro_f1": 0.9645883563324049, "test_top1": 0.9726261762189906, "test_ece": 0.009517784010230347, "time": "2026-10-05 01:06:09"}
+{"exp": "F01", "seed": 2, "views": "none", "eval_mode": "full", "img_size": 288, "precise_bn": false, "temperature": 0.6075336845401188, "val_macro_f1": 0.9701890287176236, "test_macro_f1": 0.9650710272963161, "test_top1": 0.973766752209866, "test_ece": 0.010162070510255519, "time": "2026-10-05 01:07:57"}
+### F01 (3 seed: [0, 1, 2]; 3507 ảnh)
+
+| Chỉ số | mean ± std |
+|---|---|
+| top-1 accuracy | 0.9733 ± 0.0006 |
+| macro-F1 | 0.9649 ± 0.0003 |
+| balanced accuracy | 0.9638 ± 0.0018 |
+| ECE (15 bin) | 0.0093 ± 0.0010 |
+| NLL | 0.0912 ± 0.0032 |
+
+| Lớp | Precision | Recall | F1 | Số ảnh |
+|---|---|---|---|---|
+| Chinee apple | 0.961 ± 0.011 | 0.942 ± 0.008 | 0.952 ± 0.002 | 226 |
+| Lantana | 0.975 ± 0.012 | 0.970 ± 0.003 | 0.973 ± 0.006 | 213 |
+| Parkinsonia | 0.975 ± 0.005 | 0.989 ± 0.003 | 0.982 ± 0.001 | 207 |
+| Parthenium | 0.982 ± 0.003 | 0.966 ± 0.005 | 0.974 ± 0.003 | 205 |
+| Prickly acacia | 0.951 ± 0.011 | 0.945 ± 0.010 | 0.948 ± 0.005 | 213 |
+| Rubber vine | 0.972 ± 0.010 | 0.975 ± 0.010 | 0.974 ± 0.008 | 202 |
+| Siam weed | 0.972 ± 0.008 | 0.967 ± 0.008 | 0.970 ± 0.008 | 215 |
+| Snake weed | 0.926 ± 0.011 | 0.935 ± 0.007 | 0.930 ± 0.005 | 204 |
+| Negative | 0.982 ± 0.002 | 0.985 ± 0.003 | 0.983 ± 0.001 | 1822 |
+
+Đã lưu kết quả vào eval_out/F01_*
+### T00 (3 seed: [0, 1, 2]; 3507 ảnh)
+
+| Chỉ số | mean ± std |
+|---|---|
+| top-1 accuracy | 0.9621 ± 0.0027 |
+| macro-F1 | 0.9508 ± 0.0031 |
+| balanced accuracy | 0.9511 ± 0.0010 |
+| ECE (15 bin) | 0.0074 ± 0.0022 |
+| NLL | 0.1168 ± 0.0032 |
+
+| Lớp | Precision | Recall | F1 | Số ảnh |
+|---|---|---|---|---|
+| Chinee apple | 0.970 ± 0.014 | 0.858 ± 0.020 | 0.911 ± 0.006 | 226 |
+| Lantana | 0.947 ± 0.017 | 0.973 ± 0.012 | 0.960 ± 0.006 | 213 |
+| Parkinsonia | 0.979 ± 0.007 | 0.974 ± 0.015 | 0.977 ± 0.005 | 207 |
+| Parthenium | 0.958 ± 0.022 | 0.953 ± 0.007 | 0.955 ± 0.012 | 205 |
+| Prickly acacia | 0.905 ± 0.006 | 0.955 ± 0.003 | 0.929 ± 0.002 | 213 |
+| Rubber vine | 0.965 ± 0.005 | 0.949 ± 0.003 | 0.957 ± 0.001 | 202 |
+| Siam weed | 0.952 ± 0.015 | 0.986 ± 0.009 | 0.969 ± 0.003 | 215 |
+| Snake weed | 0.914 ± 0.012 | 0.936 ± 0.005 | 0.925 ± 0.008 | 204 |
+| Negative | 0.975 ± 0.002 | 0.976 ± 0.005 | 0.975 ± 0.003 | 1822 |
+
+Đã lưu kết quả vào eval_out/T00_*
+### F01uncal (3 seed: [0, 1, 2]; 3507 ảnh)
+
+| Chỉ số | mean ± std |
+|---|---|
+| top-1 accuracy | 0.9733 ± 0.0006 |
+| macro-F1 | 0.9649 ± 0.0003 |
+| balanced accuracy | 0.9638 ± 0.0018 |
+| ECE (15 bin) | 0.0847 ± 0.0013 |
+| NLL | 0.1631 ± 0.0012 |
+
+| Lớp | Precision | Recall | F1 | Số ảnh |
+|---|---|---|---|---|
+| Chinee apple | 0.961 ± 0.011 | 0.942 ± 0.008 | 0.952 ± 0.002 | 226 |
+| Lantana | 0.975 ± 0.012 | 0.970 ± 0.003 | 0.973 ± 0.006 | 213 |
+| Parkinsonia | 0.975 ± 0.005 | 0.989 ± 0.003 | 0.982 ± 0.001 | 207 |
+| Parthenium | 0.982 ± 0.003 | 0.966 ± 0.005 | 0.974 ± 0.003 | 205 |
+| Prickly acacia | 0.951 ± 0.011 | 0.945 ± 0.010 | 0.948 ± 0.005 | 213 |
+| Rubber vine | 0.972 ± 0.010 | 0.975 ± 0.010 | 0.974 ± 0.008 | 202 |
+| Siam weed | 0.972 ± 0.008 | 0.967 ± 0.008 | 0.970 ± 0.008 | 215 |
+| Snake weed | 0.926 ± 0.011 | 0.935 ± 0.007 | 0.930 ± 0.005 | 204 |
+| Negative | 0.982 ± 0.002 | 0.985 ± 0.003 | 0.983 ± 0.001 | 1822 |
+
+Đã lưu kết quả vào eval_out/F01uncal_*
+## Tự chấm RUBRIC mục I (đề xuất; giảng viên xác nhận)
+
+| Mã | Tiêu chí | Điểm | Tối đa | Chi tiết |
+|---|---|---|---|---|
+| I1 | Top-1 accuracy test | 7 | 7 | 97.33% (mean 3 seed) |
+| I2 | Macro-F1 cải thiện so với mốc | 5 | 5 | final 0.9649, mốc 0.9508, Δ=+0.0141, s=0.0031 |
+| I3 | Recall hai lớp khó | 4 | 4 | Chinee Apple 94.2% (mốc 88.5%), Snake Weed 93.5% (mốc 88.8%) |
+| I4a | ECE sau TS < ECE trước | 1 | 1 | trước 0.0847, sau 0.0093 |
+| I4b | Chênh macro-F1 val/test <= 0.02 | 1 | 1 | val 0.9666, test 0.9649, chênh 0.0017 |
+| I5 | Cấu hình thời gian thực | 2 | 2 | p95 = 20.5 ms (ngân sách 100 ms), đo đúng cách |
+
+**Tổng các ý đã chấm: 20 / 20** (phần I tối đa 20).
+
+Ngưỡng điểm là TẠM THỜI (xem khối hằng số đầu file eval.py và RUBRIC.md mục I).
+saved results.xlsx {'Summary': 10, 'Backbones': 7, 'Training': 10, 'Inference': 18, 'Final': 8, 'PerClass': 18, 'Latency': 20}
+saved figures: ['backbones_f1_vs_latency.png', 'confusion_test_F01.png', 'confusion_test_T00.png', 'eda_class_distribution.png', 'eda_samples.png', 'errors_chinee_snake.png', 'inference_tradeoff.png', 'reliability_I00_vs_I07.png', 'sanity_augmentations.png', 'sanity_mix.png', 'sanity_overfit_one_batch.png', 'training_ablation.png']
+=== post end Mon Oct  5 01:08:00 +07 2026

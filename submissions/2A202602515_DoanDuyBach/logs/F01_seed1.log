@@ -1,0 +1,13 @@
+=== F01 seed1: {'exp_id': 'F01', 'seed': 1, 'fold': 0, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'mildcrop', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ls', 'label_smoothing': 0.1, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'final_ls_mildcrop', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+[F01 seed1] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+[F01 seed1] ep01 train_loss=1.1664 val_loss=0.5132 val_F1=0.8101 val_top1=0.8618 t=146s *
+[F01 seed1] ep02 train_loss=0.7097 val_loss=0.3077 val_F1=0.9140 val_top1=0.9349 t=161s *
+[F01 seed1] ep03 train_loss=0.6242 val_loss=0.2509 val_F1=0.9242 val_top1=0.9417 t=158s *
+[F01 seed1] ep04 train_loss=0.5850 val_loss=0.2845 val_F1=0.9135 val_top1=0.9352 t=159s
+[F01 seed1] ep05 train_loss=0.5619 val_loss=0.2535 val_F1=0.9296 val_top1=0.9474 t=159s *
+[F01 seed1] ep06 train_loss=0.5358 val_loss=0.2575 val_F1=0.9199 val_top1=0.9412 t=166s
+[F01 seed1] ep07 train_loss=0.5225 val_loss=0.2408 val_F1=0.9340 val_top1=0.9497 t=168s *
+[F01 seed1] ep08 train_loss=0.5101 val_loss=0.2104 val_F1=0.9462 val_top1=0.9603 t=169s *
+[F01 seed1] ep09 train_loss=0.5049 val_loss=0.2122 val_F1=0.9472 val_top1=0.9614 t=171s *
+[F01 seed1] ep10 train_loss=0.5018 val_loss=0.2074 val_F1=0.9496 val_top1=0.9629 t=171s *
+[F01 seed1] DONE best_ep=10 val_F1=0.9496 val_top1=0.9629 27.2 min

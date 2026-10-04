@@ -1,0 +1,14 @@
+=== T00 seed1: {'exp_id': 'T00', 'seed': 1, 'fold': 0, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'basic', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ce', 'label_smoothing': 0.0, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'baseline', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[T00 seed1] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+[T00 seed1] ep01 train_loss=0.9534 val_loss=0.4238 val_F1=0.8202 val_top1=0.8646 t=222s *
+[T00 seed1] ep02 train_loss=0.3471 val_loss=0.2828 val_F1=0.8832 val_top1=0.9106 t=184s *
+[T00 seed1] ep03 train_loss=0.2561 val_loss=0.2352 val_F1=0.8983 val_top1=0.9223 t=170s *
+[T00 seed1] ep04 train_loss=0.1989 val_loss=0.2806 val_F1=0.8774 val_top1=0.9052 t=161s
+[T00 seed1] ep05 train_loss=0.1562 val_loss=0.1770 val_F1=0.9227 val_top1=0.9429 t=166s *
+[T00 seed1] ep06 train_loss=0.1162 val_loss=0.1645 val_F1=0.9257 val_top1=0.9486 t=177s *
+[T00 seed1] ep07 train_loss=0.0942 val_loss=0.1200 val_F1=0.9507 val_top1=0.9640 t=168s *
+[T00 seed1] ep08 train_loss=0.0761 val_loss=0.1234 val_F1=0.9525 val_top1=0.9654 t=183s *
+[T00 seed1] ep09 train_loss=0.0577 val_loss=0.1168 val_F1=0.9551 val_top1=0.9674 t=232s *
+[T00 seed1] ep10 train_loss=0.0594 val_loss=0.1153 val_F1=0.9581 val_top1=0.9694 t=254s *
+[T00 seed1] DONE best_ep=10 val_F1=0.9581 val_top1=0.9694 32.1 min
