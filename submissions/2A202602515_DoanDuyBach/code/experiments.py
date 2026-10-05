@@ -79,7 +79,10 @@ FINAL_META: dict[str, str] = {
            "(I04_288) + temperature scaling (T khớp trên val từng seed)",
 }
 
-REGISTRY = {**BACKBONES, **DIAG, **TRAINING, **FINAL}
+# ---- Điểm thưởng (RUBRIC mục 2): cấu hình chung kết trên fold khác, seed 0, dùng đủ bộ ba file của fold đó (S6) ----
+FOLDS = {f"F01_fold{k}": dict(FINAL["F01"], fold=k) for k in (1, 2)}
+
+REGISTRY = {**BACKBONES, **DIAG, **TRAINING, **FINAL, **FOLDS}
 
 
 def make_config(exp_id: str, seed: int, **extra):

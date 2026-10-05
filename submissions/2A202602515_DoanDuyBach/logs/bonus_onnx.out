@@ -1,0 +1,16 @@
+[torch.onnx] Obtain model graph for `VisionTransformer([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `VisionTransformer([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+pytorch_mps {'macro_f1': 0.9618191875705855, 'top1': 0.9717223650385605, 'max_abs_logit_diff_vs_pytorch_cpu': 1.3589859008789062e-05, 'argmax_agreement_vs_pytorch_cpu': 1.0}
+pytorch_cpu {'macro_f1': 0.9618191875705855, 'top1': 0.9717223650385605, 'max_abs_logit_diff_vs_pytorch_cpu': 0.0, 'argmax_agreement_vs_pytorch_cpu': 1.0}
+onnxruntime_cpu {'macro_f1': 0.9618191875705855, 'top1': 0.9717223650385605, 'max_abs_logit_diff_vs_pytorch_cpu': 1.609325408935547e-05, 'argmax_agreement_vs_pytorch_cpu': 1.0}
+onnxruntime_coreml {'macro_f1': 0.9618191875705855, 'top1': 0.9717223650385605, 'max_abs_logit_diff_vs_pytorch_cpu': 1.817941665649414e-05, 'argmax_agreement_vs_pytorch_cpu': 1.0}
+pytorch_mps {'p50': 11.56, 'p95': 14.66, 'p99': 14.93}
+pytorch_cpu {'p50': 24.35, 'p95': 27.31, 'p99': 28.72}
+onnxruntime_cpu {'p50': 30.94, 'p95': 33.15, 'p99': 35.06}
+onnxruntime_coreml {'p50': 11.87, 'p95': 12.31, 'p99': 12.86}

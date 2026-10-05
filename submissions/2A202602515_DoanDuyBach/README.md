@@ -18,7 +18,8 @@ Notebook clone repo, tải dữ liệu (kiểm tra MD5), rồi gọi đúng các
 | Phần cứng | Apple M5 (10 nhân CPU, GPU 10 nhân, 16 GB RAM), PyTorch backend **MPS** |
 | Python | 3.12.14 |
 | Thư viện | torch 2.14.1 · torchvision 0.29.1 · timm 1.0.30 · numpy 2.5.3 · pandas 3.0.6 · scikit-learn 1.9.1 · matplotlib 3.11.2 · openpyxl 3.1.5 · fvcore (đếm GMAC) · Pillow 12.3.0 |
-| Mixed precision | autocast fp16 + GradScaler (đo trên M5: fp16 53 ảnh/s, fp32 43, bf16 35 với ResNet-50) |
+| Thư viện thêm cho phần thưởng | onnx 1.23.1 · onnxruntime 1.30.0 (CPU, CoreML EP) · onnxscript 0.7.2; DINOv2 qua timm (`vit_small_patch14_dinov2.lvd142m`) |
+| Mixed precision | autocast fp16 + GradScaler (tốc độ train ResNet-50 trên M5, batch 64: fp16 60,9 ảnh/s, bf16 58,4, fp32 44,6; `logs/bench_amp_dtype.json`) |
 | Seed | 0 cho Bước 1-3; 0, 1, 2 cho chung kết và mốc |
 
 Cài đặt: `python -m venv .venv && source .venv/bin/activate && pip install torch torchvision timm scikit-learn pandas numpy matplotlib openpyxl fvcore`
@@ -35,7 +36,7 @@ Không sửa, không lọc, không chia lại (S1). Dữ liệu và checkpoint *
 `code/post_queue.sh`; hai script này bỏ qua bước đã xong và tiếp tục run bị ngắt).
 
 ```bash
-cd code && python -m unittest test_code && cd ..                 # 22 unit test (focal γ=0 ≡ CE, CutMix, gộp BN, ...)
+cd code && python -m unittest test_code && cd ..                 # 25 unit test (focal γ=0 ≡ CE, CutMix, gộp BN, ...)
 python code/step0_eda_sanity.py                                    # EDA + kiểm tra split + loss ban đầu + overfit 1 batch
 python code/experiments.py B01 B02 B03 B04 B05 B06 D01             # Bước 1: 6 backbone + 1 chẩn đoán (seed 0)
 python code/bench_train.py                                         # tốc độ train đo cùng điều kiện
@@ -68,6 +69,24 @@ python code/make_results.py && python code/make_figures.py         # results.xls
 Mọi thí nghiệm huấn luyện đi qua **một** hàm `train.run(Config)`; danh sách cấu hình ở `code/experiments.py`.
 Mỗi lần chạy có checkpoint mỗi epoch (`runs/<exp>/seed<k>/last.pt`), chạy lại cùng lệnh sẽ tiếp tục từ epoch kế tiếp.
 `step4_final.py` có file khoá `runs/<exp>/seed<k>/test_done.json`: test chỉ chạy **một lần mỗi seed**.
+
+### Phần làm thêm (điểm thưởng, report mục 10)
+
+Chạy sau phần chính, từ thư mục bài nộp. Không script nào dùng test fold 0; nhiều fold dùng đủ bộ ba file của fold đó
+(S6), test của mỗi fold chạy một lần.
+
+```bash
+pip install onnx onnxruntime onnxscript                            # chỉ cần cho bonus_onnx.py (uv: uv pip install ...)
+bash code/run_folds.sh >> logs/folds.out 2>&1                      # F01 trên fold 1, 2 (seed 0) + test 1 lần/fold + eval.py
+python code/bonus_dinov2_probe.py                                  # linear probe DINOv2 / DeiT-S đóng băng (train -> val)
+python code/bonus_shift_tta.py shift                               # lệch phân phối trên val: macro-F1, ECE trước/sau TS
+python code/bonus_shift_tta.py bn                                  # TTA: chuẩn hoá lại thống kê BN (B05, B06)
+python code/bonus_shift_tta.py tent                                # TTA: Tent cho F01 (DeiT-S, LayerNorm)
+python code/bonus_attention.py                                     # Grad-CAM + attention rollout, lỗi Chinee ↔ Snake
+python code/bonus_onnx.py                                          # xuất ONNX, so độ trễ với PyTorch (chạy khi máy rảnh)
+python code/bench_amp_dtype.py                                     # tốc độ train ResNet-50 theo dtype (căn cứ chọn AMP)
+python code/make_results.py && python code/make_figures.py         # thêm các sheet Bonus_* và AMP_dtype, hình bonus_*
+```
 
 **Thời gian chạy thực tế** (Apple M5, MPS): DeiT-S thường mất 30–50 phút cho một run 10 epoch; tổng thời gian train
 của 20 run (không tính 2 bản sao `--alias`) khoảng 12 giờ. Trên GPU CUDA (T4 trở lên), cùng code chạy nhanh hơn nhiều.

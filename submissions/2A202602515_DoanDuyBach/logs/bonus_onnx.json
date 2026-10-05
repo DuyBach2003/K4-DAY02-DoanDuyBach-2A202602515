@@ -1,0 +1,79 @@
+{
+  "model": "F01 seed 0, deit_small_patch16_224 (dynamic_img_size), \u1ea3nh \u0111\u1ea7y \u0111\u1ee7 288, FP32, \u0111\u1ea7u v\u00e0o t\u0129nh batch 1",
+  "versions": {
+    "torch": "2.14.1",
+    "onnx": "1.23.1",
+    "onnxruntime": "1.30.0"
+  },
+  "device": "Apple M5 GPU (MPS)",
+  "providers": {
+    "onnxruntime_cpu": "['CPUExecutionProvider']",
+    "onnxruntime_coreml": "[('CoreMLExecutionProvider', {'ModelFormat': 'MLProgram', 'MLComputeUnits': 'ALL'}), 'CPUExecutionProvider']"
+  },
+  "latency_b1": {
+    "pytorch_mps": {
+      "p50": 11.558145499748207,
+      "p95": 14.655618399729065,
+      "p99": 14.932867409606843,
+      "mean": 12.540454929967382,
+      "std": 1.4248770581486871,
+      "n": 100,
+      "warmup": 10
+    },
+    "pytorch_cpu": {
+      "p50": 24.351312500130007,
+      "p95": 27.306445850354066,
+      "p99": 28.719172499349956,
+      "mean": 24.573579980014983,
+      "std": 2.3235231894742645,
+      "n": 100,
+      "warmup": 10
+    },
+    "onnxruntime_cpu": {
+      "p50": 30.937208000068495,
+      "p95": 33.146422899881145,
+      "p99": 35.05858791948413,
+      "mean": 31.15577625001606,
+      "std": 1.3741388033618092,
+      "n": 100,
+      "warmup": 10
+    },
+    "onnxruntime_coreml": {
+      "p50": 11.871874499775004,
+      "p95": 12.307612800304923,
+      "p99": 12.859437500064816,
+      "mean": 11.387425740022081,
+      "std": 1.0126661623916906,
+      "n": 100,
+      "warmup": 10
+    }
+  },
+  "parity_val": {
+    "pytorch_mps": {
+      "macro_f1": 0.9618191875705855,
+      "top1": 0.9717223650385605,
+      "max_abs_logit_diff_vs_pytorch_cpu": 1.3589859008789062e-05,
+      "argmax_agreement_vs_pytorch_cpu": 1.0
+    },
+    "pytorch_cpu": {
+      "macro_f1": 0.9618191875705855,
+      "top1": 0.9717223650385605,
+      "max_abs_logit_diff_vs_pytorch_cpu": 0.0,
+      "argmax_agreement_vs_pytorch_cpu": 1.0
+    },
+    "onnxruntime_cpu": {
+      "macro_f1": 0.9618191875705855,
+      "top1": 0.9717223650385605,
+      "max_abs_logit_diff_vs_pytorch_cpu": 1.609325408935547e-05,
+      "argmax_agreement_vs_pytorch_cpu": 1.0
+    },
+    "onnxruntime_coreml": {
+      "macro_f1": 0.9618191875705855,
+      "top1": 0.9717223650385605,
+      "max_abs_logit_diff_vs_pytorch_cpu": 1.817941665649414e-05,
+      "argmax_agreement_vs_pytorch_cpu": 1.0
+    }
+  },
+  "onnx_size_mb": 87.535781,
+  "torch_cpu_threads": 4
+}

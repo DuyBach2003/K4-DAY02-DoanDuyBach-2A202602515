@@ -1,0 +1,14 @@
+=== F01_fold2 seed0: {'exp_id': 'F01_fold2', 'seed': 0, 'fold': 2, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'mildcrop', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ls', 'label_smoothing': 0.1, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'final_ls_mildcrop', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[F01_fold2 seed0] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+[F01_fold2 seed0] ep01 train_loss=1.1380 val_loss=0.3927 val_F1=0.8533 val_top1=0.8915 t=123s *
+[F01_fold2 seed0] ep02 train_loss=0.7049 val_loss=0.3782 val_F1=0.8618 val_top1=0.8983 t=129s *
+[F01_fold2 seed0] ep03 train_loss=0.6300 val_loss=0.2840 val_F1=0.9220 val_top1=0.9400 t=140s *
+[F01_fold2 seed0] ep04 train_loss=0.5831 val_loss=0.2871 val_F1=0.9205 val_top1=0.9372 t=145s
+[F01_fold2 seed0] ep05 train_loss=0.5622 val_loss=0.2570 val_F1=0.9359 val_top1=0.9477 t=152s *
+[F01_fold2 seed0] ep06 train_loss=0.5345 val_loss=0.2383 val_F1=0.9415 val_top1=0.9537 t=158s *
+[F01_fold2 seed0] ep07 train_loss=0.5200 val_loss=0.2125 val_F1=0.9489 val_top1=0.9600 t=160s *
+[F01_fold2 seed0] ep08 train_loss=0.5087 val_loss=0.2160 val_F1=0.9473 val_top1=0.9595 t=158s
+[F01_fold2 seed0] ep09 train_loss=0.5053 val_loss=0.2072 val_F1=0.9514 val_top1=0.9620 t=160s *
+[F01_fold2 seed0] ep10 train_loss=0.5023 val_loss=0.2059 val_F1=0.9525 val_top1=0.9632 t=165s *
+[F01_fold2 seed0] DONE best_ep=10 val_F1=0.9525 val_top1=0.9632 24.9 min

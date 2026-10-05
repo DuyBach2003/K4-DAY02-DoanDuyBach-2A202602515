@@ -1,0 +1,176 @@
+{
+  "qualitative_test": [
+    {
+      "file": "20170207-154046-0.jpg",
+      "y_true": 0,
+      "y_pred": 7,
+      "conf": 0.98645486,
+      "veg_area": 0.7413073881172839,
+      "gradcam_veg_ratio": 1.0347920918655824
+    },
+    {
+      "file": "20170405-160251-0.jpg",
+      "y_true": 0,
+      "y_pred": 7,
+      "conf": 0.81746159,
+      "veg_area": 0.7813102816358025,
+      "gradcam_veg_ratio": 1.0133461871491878
+    },
+    {
+      "file": "20170410-124729-0.jpg",
+      "y_true": 0,
+      "y_pred": 7,
+      "conf": 0.78838175,
+      "veg_area": 0.7427420910493827,
+      "gradcam_veg_ratio": 1.2195275488160777
+    },
+    {
+      "file": "20170704-153719-0.jpg",
+      "y_true": 0,
+      "y_pred": 7,
+      "conf": 0.74745481,
+      "veg_area": 0.08291136188271606,
+      "gradcam_veg_ratio": 0.8613298523472859
+    },
+    {
+      "file": "20170207-153455-0.jpg",
+      "y_true": 0,
+      "y_pred": 7,
+      "conf": 0.68528586,
+      "veg_area": 0.8428096064814815,
+      "gradcam_veg_ratio": 1.0304639477574684
+    },
+    {
+      "file": "20170718-101439-2.jpg",
+      "y_true": 0,
+      "y_pred": 7,
+      "conf": 0.6608021,
+      "veg_area": 0.25163966049382713,
+      "gradcam_veg_ratio": 1.409186547814132
+    },
+    {
+      "file": "20170804-132738-1.jpg",
+      "y_true": 0,
+      "y_pred": 7,
+      "conf": 0.49201999,
+      "veg_area": 0.18994743441358025,
+      "gradcam_veg_ratio": 0.9430176807864814
+    },
+    {
+      "file": "20180109-094515-2.jpg",
+      "y_true": 7,
+      "y_pred": 0,
+      "conf": 0.94370082,
+      "veg_area": 0.39566454475308643,
+      "gradcam_veg_ratio": 0.7923708972725166
+    },
+    {
+      "file": "20170217-143546-0.jpg",
+      "y_true": 7,
+      "y_pred": 0,
+      "conf": 0.85543309,
+      "veg_area": 0.8550829475308642,
+      "gradcam_veg_ratio": 0.942007148187177
+    },
+    {
+      "file": "20170630-154406-0.jpg",
+      "y_true": 7,
+      "y_pred": 0,
+      "conf": 0.73376225,
+      "veg_area": 0.6458333333333334,
+      "gradcam_veg_ratio": 1.0091680711315523
+    },
+    {
+      "file": "20170704-155143-0.jpg",
+      "y_true": 7,
+      "y_pred": 0,
+      "conf": 0.54706015,
+      "veg_area": 0.49362220293209874,
+      "gradcam_veg_ratio": 0.8474372878863222
+    },
+    {
+      "file": "20170410-153913-0.jpg",
+      "y_true": 0,
+      "y_pred": 0,
+      "conf": 0.99774137,
+      "veg_area": 0.26434702932098764,
+      "gradcam_veg_ratio": 0.8667332020204325
+    },
+    {
+      "file": "20170718-095143-2.jpg",
+      "y_true": 0,
+      "y_pred": 0,
+      "conf": 0.9976298,
+      "veg_area": 0.26376832561728397,
+      "gradcam_veg_ratio": 0.6718585130032613
+    },
+    {
+      "file": "20170217-144455-0.jpg",
+      "y_true": 7,
+      "y_pred": 7,
+      "conf": 0.99590102,
+      "veg_area": 0.6606746720679012,
+      "gradcam_veg_ratio": 1.198857119010355
+    },
+    {
+      "file": "20170630-154345-0.jpg",
+      "y_true": 7,
+      "y_pred": 7,
+      "conf": 0.99579795,
+      "veg_area": 0.6009235146604939,
+      "gradcam_veg_ratio": 1.0794877421451012
+    }
+  ],
+  "n_test_errors": 11,
+  "n_pred_mismatch_vs_step4": 0,
+  "val_quantitative": {
+    "sai": {
+      "n": 34,
+      "veg_area": {
+        "mean": 0.38767332743282495,
+        "std": 0.22337236877738784
+      },
+      "rollout_veg_ratio": {
+        "mean": 1.053158426250269,
+        "std": 0.11720496751220971
+      },
+      "rollout_entropy": {
+        "mean": 0.9935263147359386,
+        "std": 0.0021467807184736023
+      },
+      "gradcam_veg_ratio": {
+        "mean": 1.0655462471139068,
+        "std": 0.37502794165840775
+      },
+      "gradcam_entropy": {
+        "mean": 0.8389072466399718,
+        "std": 0.1216887750634521
+      }
+    },
+    "dung": {
+      "n": 394,
+      "veg_area": {
+        "mean": 0.5065306431444664,
+        "std": 0.22755130370102106
+      },
+      "rollout_veg_ratio": {
+        "mean": 1.0204332290741434,
+        "std": 0.062040814651669045
+      },
+      "rollout_entropy": {
+        "mean": 0.9939788273783553,
+        "std": 0.001859696547117251
+      },
+      "gradcam_veg_ratio": {
+        "mean": 1.0830505793224965,
+        "std": 0.2473039781523156
+      },
+      "gradcam_entropy": {
+        "mean": 0.8837521269462418,
+        "std": 0.06550821319656137
+      }
+    }
+  },
+  "val_classes": "Chinee apple + Snake weed (val fold 0)",
+  "note": "veg_ratio > 1: bản đồ tập trung vào thực vật xanh hơn mức trải đều; entropy chuẩn hoá về [0, 1]"
+}

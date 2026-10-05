@@ -17,7 +17,8 @@ khớp trên val.
 nên Δ = +0,0141 (4,5 lần std). **Kết luận chính:** (1) họ backbone quyết định nhiều nhất (nhóm LayerNorm 0,95–0,97 so với
 CNN BatchNorm 0,70–0,78 ở công thức nền); (2) với DeiT-S, toàn bộ cải thiện so với mốc đến từ suy luận ảnh đầy đủ ở 288
 (+0,015 trên val, 3 seed), còn các thay đổi công thức huấn luyện không vượt nhiễu seed (σ = 0,0053); (3) TTA và multi-crop
-không giúp mà tốn 2–10 lần độ trễ.
+không giúp mà tốn 2–10 lần độ trễ. Phần làm thêm (3 fold, DINOv2, lệch phân phối, test-time adaptation, Grad-CAM, ONNX)
+ở mục 10.
 
 ## 2. Dữ liệu và thiết lập
 
@@ -69,7 +70,7 @@ Table 1 đúng 1 ảnh; tổng vẫn 17.509). Ta dùng nhãn của CSV.
 | Loss ban đầu, ResNet-50 tiền huấn luyện + head mới, 256 ảnh | **2,207** so với ln 9 = 2,197 |
 | Overfit 1 batch 16 ảnh (60 bước AdamW) | loss 2,188 → **0,0095**, accuracy 16/16 ở eval mode |
 | Ảnh sau augmentation (basic/color/trivial), CutMix/Mixup kèm λ | nhãn khớp ảnh (`sanity_augmentations.png`, `sanity_mix.png`) |
-| Unit test tự viết (`code/test_code.py`, 22 test) | focal γ=0 ≡ CE (sai số < 1e-6); label smoothing ε=0 ≡ CE và khớp PyTorch; CutMix λ = diện tích thật; Mixup trộn cả nhãn; norm/bias không weight decay; đóng băng giữ BN ở eval; gộp BN sai số < 1e-4; precise-BN; temperature khôi phục T đã biết; lịch LR warmup+cosine; EMA |
+| Unit test tự viết (`code/test_code.py`, 25 test) | focal γ=0 ≡ CE (sai số < 1e-6); label smoothing ε=0 ≡ CE và khớp PyTorch; CutMix λ = diện tích thật; Mixup trộn cả nhãn; norm/bias không weight decay; đóng băng giữ BN ở eval; gộp BN sai số < 1e-4; precise-BN; temperature khôi phục T đã biết; lịch LR warmup+cosine; EMA; 3 test cho phần điểm thưởng (biến dạng ảnh có seed, attention rollout, ngưỡng Otsu) |
 | `train()`/`eval()` | `train_one_epoch` gọi `set_train_mode` (giữ phần đóng băng ở eval); mọi đánh giá dùng `model.eval()` + `torch.inference_mode()` |
 
 ### 2.4 Công thức nền T00 và quy ước
@@ -82,7 +83,7 @@ Table 1 đúng 1 ảnh; tổng vẫn 17.509). Ta dùng nhãn của CSV.
 | Lịch LR | Warmup tuyến tính 1 epoch rồi cosine về 0, cập nhật theo **bước** |
 | Loss | Cross-entropy |
 | Batch / epoch | 64 / **10** (giảm từ 12–15 do ngân sách GPU, áp dụng cho mọi thí nghiệm) |
-| Mixed precision | autocast **fp16** + GradScaler (trên M5: fp16 53 ảnh/s, fp32 43, bf16 35 với ResNet-50) |
+| Mixed precision | autocast **fp16** + GradScaler. Tốc độ train ResNet-50 trên M5 (batch 64, `code/bench_amp_dtype.py`, `logs/bench_amp_dtype.json`, sheet `AMP_dtype`): fp16 60,9 ảnh/s, bf16 58,4, fp32 44,6. Lần đo dùng để chọn ban đầu không lưu log nên đã đo lại sau khi xong bài; kết quả vẫn cho fp16 nhanh nhất |
 | Chọn checkpoint | Epoch có macro-F1 val cao nhất (hòa → epoch sớm hơn); chỉ số tính bằng `eval.compute_metrics` |
 | Seed | 0 cho Bước 1–3; 0, 1, 2 cho chung kết/mốc. Cố định `random`, `numpy`, `torch`, seed worker DataLoader |
 | Thư viện | Python 3.12.14, torch 2.14.1, torchvision 0.29.1, timm 1.0.30, numpy 2.5.3, pandas 3.0.6 |
@@ -376,19 +377,22 @@ chạy test một lần, ta **không** chạy test cho cấu hình này; số te
    còn dư cho tiền xử lý; không dùng TTA hay ensemble. Vì công thức huấn luyện không đóng góp, nên ưu tiên công thức nền CE
    (đơn giản, tự hiệu chuẩn tốt, T ≈ 1). Nếu giữ label smoothing thì **bắt buộc** temperature scaling (ECE 0,085 → 0,009).
    Trước khi triển khai cần đo lại độ trễ trên phần cứng của robot (ví dụ Jetson; FP16 đã giảm 37% độ trễ ở 224 mà không đổi
-   macro-F1 val), và kiểm tra trên ảnh từ địa điểm hoặc mùa mới (mục 8). Nếu chạy ngoại tuyến và không bị giới hạn độ trễ,
-   ứng viên đáng thử tiếp là ConvNeXt-T với suy luận 288 (chưa chạy).
+   macro-F1 val), và kiểm tra trên ảnh từ địa điểm hoặc mùa mới (mục 8). Rủi ro lớn nhất khi chạy thật là ảnh mờ do
+   chuyển động (mục 10.3), nên ưu tiên tốc độ màn trập. Nếu chạy ngoại tuyến và không bị giới hạn độ trễ, ứng viên đáng
+   thử tiếp là ConvNeXt-T với suy luận 288 (chưa chạy).
 
 ## 8. Hạn chế và việc tiếp theo
 
 - **Thống kê:** ablation ở Bước 1–3 chỉ có 1 seed; chỉ chung kết và mốc có 3 seed. Với σ = 0,0053, phần lớn Δ ở Bước 2
   không phân biệt được, nên "không giúp" ở đây chỉ có nghĩa là không phát hiện được hiệu ứng lớn hơn khoảng 0,0075.
-- **Một fold, chia ngẫu nhiên:** chỉ dùng fold 0. Tác giả chia ngẫu nhiên chứ không theo địa điểm, nên ảnh cùng địa điểm
-  hay cùng buổi chụp có thể nằm ở cả train và test. Điểm test vì vậy **có thể lạc quan** so với khi robot gặp địa điểm mới.
-  Chưa chạy nhiều fold.
-- **Lệch phân phối:** ánh sáng, mùa, máy ảnh hay độ cao chụp khác đi sẽ làm giảm độ chính xác; nhiệt độ T khớp trên val
-  cũng có thể không còn đúng khi miền thay đổi. Chưa đánh giá trên ảnh nhiễu, mờ hoặc thiếu sáng.
-- **Giảm bớt do ngân sách GPU** (Apple M5, khoảng 12 giờ train cho 20 run): 10 epoch cho mọi thí nghiệm, trong khi mọi
+- **Một fold cho bài chính, chia ngẫu nhiên:** mọi lựa chọn và số chính dựa trên fold 0. Chạy thêm chung kết trên fold 1, 2
+  (mục 10.1) cho macro-F1 test 0,9601 ± 0,0068, tức biến động giữa các cách chia lớn gấp khoảng 20 lần biến động giữa các
+  seed; recall Snake weed có fold chỉ đạt 0,81. Tác giả chia ngẫu nhiên chứ không theo địa điểm, nên ảnh cùng địa điểm hay
+  cùng buổi chụp có thể nằm ở cả train và test. Điểm test vì vậy **có thể lạc quan** so với khi robot gặp địa điểm mới.
+- **Lệch phân phối:** ánh sáng, mùa, máy ảnh hay độ cao chụp khác đi sẽ làm giảm độ chính xác. Thử trên ảnh val bị biến
+  dạng (mục 10.3): ảnh mờ nhẹ (σ = 1,5 px) đã làm macro-F1 giảm 0,30, và T khớp trên val sạch không còn hiệu chuẩn đúng khi
+  lệch mạnh. Các biến dạng tự tạo này chưa thay được dữ liệu thật từ địa điểm hoặc mùa khác.
+- **Giảm bớt do ngân sách GPU** (Apple M5, khoảng 12 giờ train cho 20 run của bài chính, chưa kể 2 run ở mục 10.1): 10 epoch cho mọi thí nghiệm, trong khi mọi
   backbone đều đạt best ở epoch 10 nên chưa hội tụ hẳn; Bước 2 chỉ chạy trên DeiT-S; không đi tiếp với ConvNeXt-T dù nó tốt
   nhất ở Bước 1; không train ở độ phân giải cao hơn.
 - **Thí nghiệm thất bại và sự cố:** ba CNN có BatchNorm underfit ở công thức nền (đã chẩn đoán bằng D01 và precise-BN nhưng
@@ -401,16 +405,182 @@ chạy test một lần, ta **không** chạy test cho cấu hình này; số te
   và chỉ dùng val.
 - **Độ trễ** đo trên M5 (GPU tích hợp, bộ nhớ dùng chung), FP32, không tính tiền xử lý; chưa đo FP16 ở 288 và chưa đo trên
   phần cứng của robot.
-- **Việc tiếp theo:** (1) chạy nhiều fold, lý tưởng là chia theo địa điểm; (2) ConvNeXt-T với suy luận 288, hoặc tinh chỉnh
-  ngắn ở 288 (FixRes); (3) sửa công thức cho CNN BatchNorm (LR lớn hơn, crop nhẹ, precise-BN) rồi so lại; (4) chưng cất từ
-  ensemble sang mô hình nhỏ cho robot; (5) đánh giá độ bền trên ảnh làm tối, mờ, nhiễu và thử thích ứng lúc kiểm tra; (6)
-  xuất ONNX/TensorRT và đo trên Jetson; (7) sửa lỗi seed của DataLoader khi tiếp tục run.
+- **Việc tiếp theo:** (1) chia theo địa điểm, và chạy cả mốc T00 trên nhiều fold để tính Δ theo fold; (2) ConvNeXt-T với
+  suy luận 288, hoặc tinh chỉnh ngắn ở 288 (FixRes); (3) sửa công thức cho CNN BatchNorm (LR lớn hơn, crop nhẹ, precise-BN)
+  rồi so lại; (4) thêm augmentation mờ và tối khi train để chống lệch phân phối (mục 10.3); (5) chưng cất từ ensemble sang
+  mô hình nhỏ cho robot; (6) tinh chỉnh ngắn từ DINOv2 thay vì ImageNet (mục 10.2); (7) xuất TensorRT và đo trên Jetson;
+  (8) sửa lỗi seed của DataLoader khi tiếp tục run.
 
 ## 9. Phụ lục
 
 - Danh sách `exp_id` và cấu hình đầy đủ: `code/experiments.py` (COMMON + BACKBONES/DIAG/TRAINING/FINAL), cấu hình
   từng run (kèm tag trọng số, phiên bản thư viện, nhóm tham số) ở `logs/<exp_id>/seed<k>/config.json`.
 - Notebook: `code/lab_day2.ipynb` (link Colab trong `README.md`).
-- Bảng số liệu: `results.xlsx` (Summary, Backbones, Training, Inference, Final, PerClass, Latency, Decomposition).
+- Bảng số liệu: `results.xlsx` (Summary, Backbones, Training, Inference, Final, PerClass, Latency, Decomposition;
+  AMP_dtype; các sheet `Bonus_*` của mục 10).
 - Đầu ra của `eval.py score` / `grade`: `logs/eval/` (lệnh ở `README.md`). Chẩn đoán: `logs/diag_bn_mps.json`,
   `logs/diag_precise_bn.json`, `logs/diag_factorial_val.json`.
+
+## 10. Phần làm thêm (điểm thưởng)
+
+Mọi phần dưới đây chạy **sau** Bước 4 và không thay đổi cấu hình chung kết. Không phần nào dùng test fold 0, trừ 10.5:
+mục này chỉ vẽ bản đồ cho các ảnh test đã dự đoán ở Bước 4, không tính lại chỉ số nào. Số liệu nằm ở các sheet `Bonus_*`
+của `results.xlsx` và các file `logs/bonus_*.json`; lệnh chạy ở `README.md` (mục "Phần làm thêm").
+
+### 10.1 Nhiều fold: cấu hình chung kết trên fold 0, 1, 2
+
+F01 (đúng công thức huấn luyện và cách suy luận của chung kết, seed 0) được train lại trên fold 1 và 2 của tác giả, mỗi
+fold dùng đủ bộ ba file train/val/test của chính nó (S6). T khớp trên val của fold đó; test chạy **một lần mỗi fold**
+(`code/run_folds.sh`, `logs/step4_F01_fold*.json`, `logs/eval/F01_fold*_*`). Fold 0 là F01 seed 0 của bài chính. Lần chạy
+đầu của fold 2 bị ngắt ở epoch 2 do máy khởi động lại; nó được chạy lại **từ đầu** chứ không tiếp tục từ `last.pt`, để
+tránh lỗi seed DataLoader ở mục 2.4 (log lần dở: `logs/F01_fold2_seed0_interrupted.log`).
+
+| Fold | macro-F1 val | **macro-F1 test** | top-1 test | ECE test | recall Chinee apple | recall Snake weed |
+|---|---:|---:|---:|---:|---:|---:|
+| 0 | 0,9618 | 0,9651 | 0,9735 | 0,0081 | 0,9469 | 0,9412 |
+| 1 | 0,9616 | 0,9524 | 0,9652 | 0,0119 | 0,9333 | 0,8128 |
+| 2 | 0,9692 | 0,9628 | 0,9712 | 0,0096 | 0,9289 | 0,9163 |
+| **mean ± std (3 fold)** | 0,9642 ± 0,0043 | **0,9601 ± 0,0068** | 0,9699 ± 0,0043 | 0,0099 ± 0,0019 | 0,9364 ± 0,0094 | 0,8901 ± 0,0681 |
+
+- Std qua fold của macro-F1 test (0,0068) lớn gấp khoảng 20 lần std qua seed trên fold 0 (0,0003): **cách chia dữ liệu tạo
+  biến động lớn hơn nhiều so với seed**, nên số test của một fold, dù có 3 seed, đánh giá thấp độ bất định thật.
+- Recall Snake weed dao động mạnh nhất (0,81–0,94). Trên fold 1 nó thấp hơn mốc bài báo (88,8%), nên kết luận "cả hai lớp
+  khó vượt mốc bài báo" ở mục 6.2 chỉ đúng với fold 0.
+- Hạn chế: cấu hình được chọn trên val của fold 0, mà ba fold là ba cách chia khác nhau của cùng 17.509 ảnh, nên val fold 0
+  chồng lấn với train/test của fold 1, 2; mỗi fold chỉ 1 seed; mốc T00 không chạy trên fold 1, 2 nên không tính Δ theo fold.
+
+### 10.2 Linear probe trên mô hình nền tảng DINOv2 (đặc trưng đóng băng)
+
+Giao thức (`code/bonus_dinov2_probe.py`): ảnh qua transform val 224 (không augmentation), đặc trưng = [token CLS, trung bình
+token patch] của lớp cuối, chuẩn hoá theo train, hồi quy logistic đa lớp, C chọn bằng 5-fold CV trên **train**. Chỉ dùng
+train để fit và val để đánh giá.
+
+| Mô hình | Cách dùng | macro-F1 val | top-1 val | F1 Chinee | F1 Snake |
+|---|---|---:|---:|---:|---:|
+| DINOv2 ViT-S/14 (tự giám sát, LVD-142M) | đóng băng + hồi quy logistic | **0,9075** | 0,9252 | 0,8682 | 0,8564 |
+| DeiT-S (có giám sát, ImageNet-1k) | đóng băng + hồi quy logistic, cùng giao thức | 0,8332 | 0,8695 | 0,7470 | 0,7558 |
+| T01: DeiT-S | đóng băng, head train 10 epoch có augmentation | 0,7329 | 0,7932 | 0,6262 | 0,6537 |
+| B03: DeiT-S | tinh chỉnh toàn bộ | 0,9508 | 0,9643 | 0,8945 | 0,8966 |
+| B02: ConvNeXt-T | tinh chỉnh toàn bộ | 0,9688 | 0,9766 | 0,9517 | 0,9268 |
+| B01: ResNet-50 | tinh chỉnh toàn bộ | 0,7773 | 0,8369 | 0,6379 | 0,6891 |
+| B06: MobileNetV3 | tinh chỉnh toàn bộ | 0,7050 | 0,7858 | 0,7030 | 0,7305 |
+
+- Cùng cỡ (khoảng 22M tham số) và cùng giao thức, đặc trưng DINOv2 hơn đặc trưng ImageNet có giám sát **0,074** macro-F1.
+  Dù đóng băng hoàn toàn, DINOv2 vẫn hơn ba CNN BatchNorm đã tinh chỉnh ở công thức nền (0,705–0,777).
+- Tinh chỉnh toàn bộ vẫn cần để đạt 0,95+: DINOv2 đóng băng kém DeiT-S tinh chỉnh 0,043 và ConvNeXt-T 0,061.
+- Cùng là DeiT-S đóng băng, hồi quy logistic (0,8332) hơn T01 (0,7329) tới 0,100, nên T01 ở mục 4 đánh giá thấp chất lượng
+  đặc trưng đóng băng. Giả thuyết: head của T01 chỉ dùng token CLS và được train ngắn trên ảnh augmentation mạnh.
+
+### 10.3 Lệch phân phối: ảnh thiếu sáng, mờ, nhiễu (val)
+
+Biến dạng áp lên ảnh gốc 256 × 256 (8 bit) trước khi resize: thiếu sáng (nhân độ sáng ×0,5 và ×0,3), mờ Gauss (σ = 1,5 và
+3 px), nhiễu Gauss (σ = 0,05 và 0,10 trên thang [0, 1], seed cố định theo ảnh). Đánh giá cả 3 seed của F01 (ảnh đầy đủ 288)
+và của mốc T00 (CenterCrop 224) trên val (`code/bonus_shift_tta.py shift`, sheet `Bonus_Shift`). "T oracle" khớp lại trên
+chính ảnh lệch (có dùng nhãn), chỉ để biết temperature scaling còn sửa được tới đâu.
+
+| Điều kiện (val) | F01 macro-F1 | T00 macro-F1 | F01 ECE, T = 1 | F01 ECE, T khớp val sạch | F01 ECE, T oracle | T oracle (F01) |
+|---|---:|---:|---:|---:|---:|---:|
+| sạch | 0,9666 ± 0,0043 | 0,9522 ± 0,0053 | 0,0838 | 0,0062 | 0,0062 | 0,62 |
+| thiếu sáng ×0,5 | 0,9316 ± 0,0101 | 0,9226 ± 0,0055 | 0,0913 | 0,0142 | 0,0093 | 0,66 |
+| thiếu sáng ×0,3 | 0,8833 ± 0,0204 | 0,8638 ± 0,0228 | 0,0746 | 0,0397 | 0,0193 | 0,74 |
+| mờ σ = 1,5 px | 0,6674 ± 0,0060 | 0,5603 ± 0,0336 | 0,0719 | 0,1605 | 0,0727 | 0,99 |
+| mờ σ = 3 px | 0,2937 ± 0,0343 | 0,2715 ± 0,0322 | 0,1673 | 0,3109 | 0,1015 | 1,25 |
+| nhiễu σ = 0,05 | 0,9528 ± 0,0030 | 0,9354 ± 0,0058 | 0,0852 | 0,0097 | 0,0092 | 0,64 |
+| nhiễu σ = 0,10 | 0,8833 ± 0,0163 | 0,8699 ± 0,0091 | 0,0746 | 0,0353 | 0,0198 | 0,72 |
+
+![shift](figures/bonus_shift_tta.png)
+
+- **Mờ là lệch nguy hiểm nhất:** chỉ σ = 1,5 px đã làm macro-F1 của F01 giảm 0,30 (T00 giảm 0,39), trong khi thiếu sáng ×0,5
+  và nhiễu σ = 0,05 chỉ làm giảm 0,01–0,04. Mô hình dựa nhiều vào kết cấu chi tiết của lá, khớp giả thuyết ở mục 6.3. Với
+  robot, ảnh nhoè do chuyển động là rủi ro chính: cần màn trập nhanh, hoặc thêm augmentation mờ khi train.
+- F01 bền hơn T00 ở mọi điều kiện, rõ nhất khi mờ σ = 1,5 (0,667 so với 0,560, chênh lớn hơn nhiều std).
+- **Temperature khớp trên val sạch không chuyển được sang miền lệch mạnh.** Khi lệch nhẹ, T sạch vẫn giữ ECE ≤ 0,015. Khi
+  lệch mạnh, độ tin cậy giảm chậm hơn độ chính xác (mô hình tự tin hơn mức nên có): T tối ưu tăng từ 0,62 lên 0,99–1,25, nên
+  T sạch (0,62, làm sắc thêm xác suất) cho ECE còn tệ hơn không hiệu chuẩn (mờ σ = 1,5: 0,161 so với 0,072). Đây là câu trả
+  lời cho câu hỏi 8 của GUIDE: T khớp trên val không đáng tin khi miền thay đổi; cần khớp lại T trên dữ liệu của miền mới.
+
+### 10.4 Test-time adaptation (không dùng nhãn, trên ảnh val bị biến dạng)
+
+**(a) Chuẩn hoá lại thống kê BatchNorm (BN-adapt)** cho hai CNN có BN (`code/bonus_shift_tta.py bn`): tính lại thống kê BN
+trên chính ảnh lệch (không nhãn), so với thống kê gốc lúc train và precise-BN (ảnh train sạch). Macro-F1 val:
+
+| Điều kiện (val) | B06 gốc | B06 precise-BN | **B06 BN-adapt** | B05 gốc | B05 precise-BN | **B05 BN-adapt** |
+|---|---:|---:|---:|---:|---:|---:|
+| sạch | 0,7068 | 0,8758 | 0,8746 | 0,7661 | 0,8640 | 0,8661 |
+| thiếu sáng ×0,5 | 0,6916 | 0,6565 | 0,8744 | 0,6631 | 0,6291 | 0,8635 |
+| thiếu sáng ×0,3 | 0,2964 | 0,2500 | 0,8742 | 0,3704 | 0,2756 | 0,8621 |
+| mờ σ = 1,5 px | 0,2937 | 0,1866 | 0,8068 | 0,2819 | 0,1852 | 0,7904 |
+| mờ σ = 3 px | 0,0841 | 0,0867 | 0,5858 | 0,1048 | 0,0968 | 0,5780 |
+| nhiễu σ = 0,05 | 0,1097 | 0,6451 | 0,8683 | 0,1284 | 0,5245 | 0,8517 |
+| nhiễu σ = 0,10 | 0,1214 | 0,1190 | 0,8403 | 0,0733 | 0,0823 | 0,8014 |
+
+- CNN BatchNorm cực kỳ nhạy với lệch (B06, nhiễu σ = 0,05: 0,11) vì thống kê BN lưu lúc train không còn khớp với ảnh mới;
+  precise-BN trên ảnh train sạch không cứu được khi miền đổi.
+- Chỉ cần tính lại thống kê BN trên ảnh của miền mới là phục hồi gần như hoàn toàn với thiếu sáng (B06: 0,874, bằng mức
+  sạch) và phần lớn với nhiễu và mờ nhẹ. Sau BN-adapt, MobileNetV3 (4,2M tham số) còn hơn F01 khi mờ σ = 1,5 (0,807 so
+  với 0,667).
+- Lưu ý: BN-adapt ở đây là transductive (thích ứng và đánh giá trên cùng 3.501 ảnh lệch, không dùng nhãn); trên robot cần
+  gom đủ một lô ảnh của miền mới trước khi tính lại thống kê.
+
+**(b) Tent cho F01** (`code/bonus_shift_tta.py tent`). DeiT-S không có BatchNorm nên dùng Tent (Wang và cộng sự, 2021):
+cập nhật γ/β của mọi LayerNorm (19.200 tham số) bằng cực tiểu entropy dự đoán, online một lượt trên ảnh lệch, không dùng
+nhãn. Siêu tham số giữ đúng như bài báo Tent cho ImageNet (SGD, momentum 0,9, lr 0,00025, batch 64), không tinh chỉnh.
+F01 seed 0, ảnh đầy đủ 288, ECE tính với T khớp trên val sạch (0,639):
+
+| Điều kiện (val) | macro-F1 trước | macro-F1 sau Tent | ECE trước | ECE sau |
+|---|---:|---:|---:|---:|
+| thiếu sáng ×0,5 | 0,9392 | 0,9444 | 0,0093 | 0,0083 |
+| thiếu sáng ×0,3 | 0,8955 | **0,9125** | 0,0307 | 0,0244 |
+| mờ σ = 1,5 px | 0,6737 | 0,6583 | 0,1621 | 0,1725 |
+| mờ σ = 3 px | 0,2653 | 0,2525 | 0,3446 | 0,3624 |
+| nhiễu σ = 0,05 | 0,9502 | 0,9498 | 0,0107 | 0,0116 |
+| nhiễu σ = 0,10 | 0,8939 | 0,8976 | 0,0336 | 0,0337 |
+
+- Tent giúp rõ nhất với thiếu sáng (+0,017 ở ×0,3), gần như không đổi với nhiễu, và **làm hại** với mờ (−0,013 đến −0,015):
+  khi mô hình đã sai nhiều, cực tiểu entropy củng cố chính các dự đoán sai.
+- Hiệu quả kém xa BN-adapt trên CNN. Giả thuyết: Tent chỉ chỉnh 19.200 tham số affine, còn LayerNorm vốn chuẩn hoá từng
+  token nên mô hình đã ít nhạy với thay đổi độ sáng toàn cục, phần còn lại để chỉnh nhỏ.
+- Chỉ có seed 0, nên các chênh lệch nhỏ (nhiễu) không phân biệt được với nhiễu ngẫu nhiên.
+
+### 10.5 Grad-CAM và attention giải thích lỗi Chinee apple ↔ Snake weed
+
+`code/bonus_attention.py` vẽ bản đồ cho F01 seed 0 trên các ảnh test bị nhầm giữa hai lớp (lấy đúng từ file dự đoán của
+Bước 4; nhãn đoán khớp 15/15 ảnh, không tính lại chỉ số test nào) và 2 ảnh đoán đúng mỗi lớp. Attention rollout
+(`figures/attention_rollout_chinee_snake.png`) gần như trải đều (entropy chuẩn hoá 0,994) nên ít thông tin; Grad-CAM của
+lớp được đoán (kích hoạt và gradient tại norm1 của block cuối) tập trung hơn:
+
+![gradcam](figures/gradcam_chinee_snake.png)
+
+Ở các ảnh sai, bằng chứng cho nhãn sai thường dồn vào vài vùng nhỏ (thân cành, điểm nắng chói, mép bóng), còn ở ảnh đoán
+đúng thì trải trên nhiều lá. Định lượng trên val (ảnh Chinee apple và Snake weed, F01 seed 0, sheet `Bonus_Attention`):
+
+| Nhóm ảnh val | Số ảnh | Diện tích thực vật xanh (ExG-Otsu) | Grad-CAM: entropy chuẩn hoá | Grad-CAM: tập trung vào thực vật (tỉ số) |
+|---|---:|---:|---:|---:|
+| đoán sai | 34 | 0,388 ± 0,223 | 0,839 ± 0,122 | 1,07 |
+| đoán đúng | 394 | 0,507 ± 0,228 | 0,884 ± 0,066 | 1,08 |
+
+Ảnh bị đoán sai có ít thực vật xanh lộ rõ hơn (chênh 0,12, khoảng 3 lần sai số chuẩn) và bản đồ Grad-CAM tập trung hơn
+(entropy thấp hơn, khoảng 2 lần sai số chuẩn), trong khi tỉ lệ tập trung vào thực vật của hai nhóm như nhau. Điều này củng
+cố giả thuyết ở mục 6.3: lỗi xảy ra khi cây ít lộ rõ (bóng tối, ám màu, lá khô) và mô hình dựa vào vài dấu hiệu cục bộ.
+ExG chỉ là xấp xỉ thô của "thực vật xanh" (ảnh ám tím làm lá xanh bị bỏ sót).
+
+### 10.6 Xuất ONNX và so sánh độ trễ với PyTorch
+
+`code/bonus_onnx.py` xuất F01 seed 0 (ảnh đầy đủ 288) sang ONNX (opset 18, exporter dynamo của torch 2.14.1, 87,5 MB) với
+đầu vào tĩnh 1 × 3 × 288 × 288, đúng kịch bản robot xử lý từng khung hình; bản batch động không chạy được trên CoreML EP (lỗi
+"unbounded dimension"). Đo trên Apple M5, FP32, batch 1, warmup 10, 100 lần đo, không tính tiền xử lý; PyTorch MPS có
+`torch.mps.synchronize()` (sheet `Bonus_ONNX`).
+
+| Backend | p50 (ms) | p95 (ms) | p99 (ms) | macro-F1 val | Sai khác logit lớn nhất so với PyTorch CPU |
+|---|---:|---:|---:|---:|---:|
+| PyTorch, GPU (MPS) | 11,6 | 14,7 | 14,9 | 0,9618 | 1,4·10⁻⁵ |
+| PyTorch, CPU (4 luồng) | 24,4 | 27,3 | 28,7 | 0,9618 | 0 (tham chiếu) |
+| ONNX Runtime, CPU EP | 30,9 | 33,2 | 35,1 | 0,9618 | 1,6·10⁻⁵ |
+| ONNX Runtime, CoreML EP (MLProgram) | 11,9 | **12,3** | 12,9 | 0,9618 | 1,8·10⁻⁵ |
+
+- Bản ONNX tương đương hoàn toàn: cùng macro-F1 val và trùng 100% nhãn đoán với PyTorch trên 3.501 ảnh val.
+- Trên CPU, ONNX Runtime **chậm hơn** PyTorch (30,9 so với 24,4 ms p50): chuyển sang ONNX không tự động nhanh hơn, phải đo
+  trên máy thật (GUIDE mục 8). Với CoreML EP (dùng GPU/Neural Engine của Apple), p50 ngang PyTorch MPS nhưng đuôi ổn định
+  hơn (p95 12,3 so với 14,7 ms), có lợi cho ngân sách thời gian thực vốn tính theo p95.
+- Lần đo này PyTorch MPS cho p95 14,7 ms, thấp hơn lần đo ở Bước 3 (20,5 ms cho cùng cấu hình): độ trễ trên laptop dao
+  động theo nhiệt độ và tải nền, nên số dùng cho RUBRIC I5 vẫn là lần đo ở Bước 3 (con số bi quan hơn).

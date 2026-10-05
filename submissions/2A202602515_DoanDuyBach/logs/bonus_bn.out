@@ -1,0 +1,14 @@
+B05 clean {'goc': 0.7661, 'precise_bn': 0.864, 'bn_adapt': 0.8661}
+B05 dark_0.5 {'goc': 0.6631, 'precise_bn': 0.6291, 'bn_adapt': 0.8635}
+B05 dark_0.3 {'goc': 0.3704, 'precise_bn': 0.2756, 'bn_adapt': 0.8621}
+B05 blur_1.5 {'goc': 0.2819, 'precise_bn': 0.1852, 'bn_adapt': 0.7904}
+B05 blur_3 {'goc': 0.1048, 'precise_bn': 0.0968, 'bn_adapt': 0.578}
+B05 noise_0.05 {'goc': 0.1284, 'precise_bn': 0.5245, 'bn_adapt': 0.8517}
+B05 noise_0.10 {'goc': 0.0733, 'precise_bn': 0.0823, 'bn_adapt': 0.8014}
+B06 clean {'goc': 0.7068, 'precise_bn': 0.8758, 'bn_adapt': 0.8746}
+B06 dark_0.5 {'goc': 0.6916, 'precise_bn': 0.6565, 'bn_adapt': 0.8744}
+B06 dark_0.3 {'goc': 0.2964, 'precise_bn': 0.25, 'bn_adapt': 0.8742}
+B06 blur_1.5 {'goc': 0.2937, 'precise_bn': 0.1866, 'bn_adapt': 0.8068}
+B06 blur_3 {'goc': 0.0841, 'precise_bn': 0.0867, 'bn_adapt': 0.5858}
+B06 noise_0.05 {'goc': 0.1097, 'precise_bn': 0.6451, 'bn_adapt': 0.8683}
+B06 noise_0.10 {'goc': 0.1214, 'precise_bn': 0.119, 'bn_adapt': 0.8403}

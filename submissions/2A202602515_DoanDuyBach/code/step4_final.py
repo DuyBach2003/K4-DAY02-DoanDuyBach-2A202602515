@@ -38,6 +38,7 @@ def main():
     ap.add_argument("--exp", required=True)
     ap.add_argument("--backbone", required=True)
     ap.add_argument("--seeds", nargs="+", type=int, required=True)
+    ap.add_argument("--fold", type=int, default=0, help="fold của tác giả (0 cho bài chính; 1-4 chỉ cho điểm thưởng, S6)")
     ap.add_argument("--views", choices=["none", "hflip"], default="none")
     ap.add_argument("--temperature", action="store_true")
     ap.add_argument("--precise-bn", action="store_true", help="tính lại thống kê BN bằng ảnh train (I09)")
@@ -56,7 +57,7 @@ def main():
     import step3_inference
 
     device = torch.device(args.device) if args.device else TR.get_device()
-    train_df, val_df, test_df = D.load_split(args.labels_dir, 0)
+    train_df, val_df, test_df = D.load_split(args.labels_dir, args.fold)
     pred_dir, log_dir = Path("predictions"), Path("logs")
     if args.dry_run:
         val_df = val_df.head(args.dry_run)
@@ -97,7 +98,7 @@ def main():
                              apply_temperature(zt, 1.0))
         mv = compute_metrics(yv, pv.argmax(1), pv)
         mt = compute_metrics(yt, pt.argmax(1), pt)
-        rec = {"exp": args.exp, "seed": seed, "views": args.views, "eval_mode": args.eval_mode, "img_size": args.img_size, "precise_bn": args.precise_bn, "temperature": T,
+        rec = {"exp": args.exp, "seed": seed, "fold": args.fold, "views": args.views, "eval_mode": args.eval_mode, "img_size": args.img_size, "precise_bn": args.precise_bn, "temperature": T,
                "val_macro_f1": mv["macro_f1"], "test_macro_f1": mt["macro_f1"], "test_top1": mt["top1"],
                "test_ece": mt["ece"], "time": time.strftime("%Y-%m-%d %H:%M:%S")}
         lock.write_text(json.dumps(rec, indent=2))

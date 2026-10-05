@@ -1,0 +1,14 @@
+=== F01_fold1 seed0: {'exp_id': 'F01_fold1', 'seed': 0, 'fold': 1, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'mildcrop', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ls', 'label_smoothing': 0.1, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'final_ls_mildcrop', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[F01_fold1 seed0] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+[F01_fold1 seed0] ep01 train_loss=1.1319 val_loss=0.4432 val_F1=0.8351 val_top1=0.8749 t=119s *
+[F01_fold1 seed0] ep02 train_loss=0.7052 val_loss=0.3650 val_F1=0.8619 val_top1=0.8989 t=146s *
+[F01_fold1 seed0] ep03 train_loss=0.6288 val_loss=0.3510 val_F1=0.8810 val_top1=0.9112 t=154s *
+[F01_fold1 seed0] ep04 train_loss=0.5851 val_loss=0.3148 val_F1=0.9154 val_top1=0.9300 t=247s *
+[F01_fold1 seed0] ep05 train_loss=0.5640 val_loss=0.3310 val_F1=0.8903 val_top1=0.9178 t=488s
+[F01_fold1 seed0] ep06 train_loss=0.5360 val_loss=0.2605 val_F1=0.9291 val_top1=0.9440 t=327s *
+[F01_fold1 seed0] ep07 train_loss=0.5189 val_loss=0.2312 val_F1=0.9446 val_top1=0.9572 t=476s *
+[F01_fold1 seed0] ep08 train_loss=0.5082 val_loss=0.2409 val_F1=0.9380 val_top1=0.9517 t=439s
+[F01_fold1 seed0] ep09 train_loss=0.5028 val_loss=0.2434 val_F1=0.9328 val_top1=0.9486 t=473s
+[F01_fold1 seed0] ep10 train_loss=0.5011 val_loss=0.2387 val_F1=0.9368 val_top1=0.9515 t=403s
+[F01_fold1 seed0] DONE best_ep=7 val_F1=0.9446 val_top1=0.9572 54.7 min

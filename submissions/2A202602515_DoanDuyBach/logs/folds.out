@@ -1,0 +1,99 @@
+=== folds start Mon Oct  5 01:39:18 +07 2026
+=== F01_fold1 seed0: {'exp_id': 'F01_fold1', 'seed': 0, 'fold': 1, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'mildcrop', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ls', 'label_smoothing': 0.1, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'final_ls_mildcrop', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[F01_fold1 seed0] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+[F01_fold1 seed0] ep01 train_loss=1.1319 val_loss=0.4432 val_F1=0.8351 val_top1=0.8749 t=119s *
+[F01_fold1 seed0] ep02 train_loss=0.7052 val_loss=0.3650 val_F1=0.8619 val_top1=0.8989 t=146s *
+[F01_fold1 seed0] ep03 train_loss=0.6288 val_loss=0.3510 val_F1=0.8810 val_top1=0.9112 t=154s *
+[F01_fold1 seed0] ep04 train_loss=0.5851 val_loss=0.3148 val_F1=0.9154 val_top1=0.9300 t=247s *
+[F01_fold1 seed0] ep05 train_loss=0.5640 val_loss=0.3310 val_F1=0.8903 val_top1=0.9178 t=488s
+[F01_fold1 seed0] ep06 train_loss=0.5360 val_loss=0.2605 val_F1=0.9291 val_top1=0.9440 t=327s *
+[F01_fold1 seed0] ep07 train_loss=0.5189 val_loss=0.2312 val_F1=0.9446 val_top1=0.9572 t=476s *
+[F01_fold1 seed0] ep08 train_loss=0.5082 val_loss=0.2409 val_F1=0.9380 val_top1=0.9517 t=439s
+[F01_fold1 seed0] ep09 train_loss=0.5028 val_loss=0.2434 val_F1=0.9328 val_top1=0.9486 t=473s
+[F01_fold1 seed0] ep10 train_loss=0.5011 val_loss=0.2387 val_F1=0.9368 val_top1=0.9515 t=403s
+[F01_fold1 seed0] DONE best_ep=7 val_F1=0.9446 val_top1=0.9572 54.7 min
+=== F01_fold2 seed0: {'exp_id': 'F01_fold2', 'seed': 0, 'fold': 2, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'mildcrop', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ls', 'label_smoothing': 0.1, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'final_ls_mildcrop', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+[F01_fold2 seed0] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+[F01_fold2 seed0] ep01 train_loss=1.1380 val_loss=0.3927 val_F1=0.8533 val_top1=0.8915 t=335s *
+[F01_fold2 seed0] ep02 train_loss=0.7049 val_loss=0.3782 val_F1=0.8618 val_top1=0.8983 t=228s *
+sysmon request failed with error: sysmond service not found
+pgrep: Cannot get process list
+=== folds start Mon Oct  5 09:21:52 +07 2026
+skip F01_fold1 seed0 (đã có summary.json)
+=== F01_fold2 seed0: {'exp_id': 'F01_fold2', 'seed': 0, 'fold': 2, 'backbone': 'deit_small_patch16_224', 'init': 'finetune', 'drop_rate': 0.0, 'img_size': 224, 'aug': 'mildcrop', 'sampler': None, 'mix': None, 'mix_alpha': 1.0, 'loss': 'ls', 'label_smoothing': 0.1, 'focal_gamma': 2.0, 'class_weight_beta': None, 'epochs': 10, 'batch_size': 64, 'lr_backbone': 0.0001, 'lr_head': 0.001, 'weight_decay': 0.05, 'warmup_epochs': 1.0, 'ema_decay': None, 'amp': True, 'num_workers': 6, 'grad_clip': None, 'images_dir': '../../data/images', 'labels_dir': '../../data/labels', 'out_dir': 'runs', 'pred_dir': 'predictions', 'curves_dir': 'curves', 'desc': 'final_ls_mildcrop', 'save_test_predictions': False, 'measure_latency': True, 'max_train_batches': None}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[F01_fold2 seed0] deit_small_patch16_224.fb_in1k params=21.67M GMAC=4.25 device=mps amp=torch.float16
+[F01_fold2 seed0] ep01 train_loss=1.1380 val_loss=0.3927 val_F1=0.8533 val_top1=0.8915 t=123s *
+[F01_fold2 seed0] ep02 train_loss=0.7049 val_loss=0.3782 val_F1=0.8618 val_top1=0.8983 t=129s *
+[F01_fold2 seed0] ep03 train_loss=0.6300 val_loss=0.2840 val_F1=0.9220 val_top1=0.9400 t=140s *
+[F01_fold2 seed0] ep04 train_loss=0.5831 val_loss=0.2871 val_F1=0.9205 val_top1=0.9372 t=145s
+[F01_fold2 seed0] ep05 train_loss=0.5622 val_loss=0.2570 val_F1=0.9359 val_top1=0.9477 t=152s *
+[F01_fold2 seed0] ep06 train_loss=0.5345 val_loss=0.2383 val_F1=0.9415 val_top1=0.9537 t=158s *
+[F01_fold2 seed0] ep07 train_loss=0.5200 val_loss=0.2125 val_F1=0.9489 val_top1=0.9600 t=160s *
+[F01_fold2 seed0] ep08 train_loss=0.5087 val_loss=0.2160 val_F1=0.9473 val_top1=0.9595 t=158s
+[F01_fold2 seed0] ep09 train_loss=0.5053 val_loss=0.2072 val_F1=0.9514 val_top1=0.9620 t=160s *
+[F01_fold2 seed0] ep10 train_loss=0.5023 val_loss=0.2059 val_F1=0.9525 val_top1=0.9632 t=165s *
+[F01_fold2 seed0] DONE best_ep=10 val_F1=0.9525 val_top1=0.9632 24.9 min
+skip F01_fold1 seed0 (đã có summary.json)
+skip F01_fold2 seed0 (đã có summary.json)
+skip F01_fold1 seed0 (đã có summary.json)
+skip F01_fold2 seed0 (đã có summary.json)
+{"exp": "F01_fold1", "seed": 0, "fold": 1, "views": "none", "eval_mode": "full", "img_size": 288, "precise_bn": false, "temperature": 0.6352442768268319, "val_macro_f1": 0.9616127358520724, "test_macro_f1": 0.9523652461522892, "test_top1": 0.9651727091064801, "test_ece": 0.011926337340901594, "time": "2026-10-05 09:49:37"}
+code/run_folds.sh: line 25:  6710 Terminated: 15          ( while sleep 60; do
+    pgrep -f "code/experiments.py F01_fold" > /dev/null || continue; if [ $(( $(date +%s) - $(stat -f %m logs/folds.out) )) -gt 900 ]; then
+        echo "$(date) watchdog: không có log mới > 15 phút, kill experiments.py"; pkill -f "code/experiments.py F01_fold";
+    fi;
+done )
+### F01_fold1 (1 seed: [0]; 3503 ảnh)
+
+> CẢNH BÁO: chỉ có 1 seed, yêu cầu tối thiểu 3.
+
+| Chỉ số | mean ± std |
+|---|---|
+| top-1 accuracy | 0.9652 (1 seed) |
+| macro-F1 | 0.9524 (1 seed) |
+| balanced accuracy | 0.9498 (1 seed) |
+| ECE (15 bin) | 0.0119 (1 seed) |
+| NLL | 0.1158 (1 seed) |
+
+| Lớp | Precision | Recall | F1 | Số ảnh |
+|---|---|---|---|---|
+| Chinee apple | 0.837 (1 seed) | 0.933 (1 seed) | 0.882 (1 seed) | 225 |
+| Lantana | 0.933 (1 seed) | 0.981 (1 seed) | 0.957 (1 seed) | 213 |
+| Parkinsonia | 0.995 (1 seed) | 0.971 (1 seed) | 0.983 (1 seed) | 206 |
+| Parthenium | 0.967 (1 seed) | 0.985 (1 seed) | 0.976 (1 seed) | 205 |
+| Prickly acacia | 0.971 (1 seed) | 0.930 (1 seed) | 0.950 (1 seed) | 213 |
+| Rubber vine | 0.975 (1 seed) | 0.975 (1 seed) | 0.975 (1 seed) | 202 |
+| Siam weed | 0.991 (1 seed) | 0.977 (1 seed) | 0.984 (1 seed) | 215 |
+| Snake weed | 0.971 (1 seed) | 0.813 (1 seed) | 0.885 (1 seed) | 203 |
+| Negative | 0.978 (1 seed) | 0.983 (1 seed) | 0.981 (1 seed) | 1821 |
+
+Đã lưu kết quả vào eval_out/F01_fold1_*
+{"exp": "F01_fold2", "seed": 0, "fold": 2, "views": "none", "eval_mode": "full", "img_size": 288, "precise_bn": false, "temperature": 0.6222150535862662, "val_macro_f1": 0.9692312613965177, "test_macro_f1": 0.9627703709178951, "test_top1": 0.971151099685804, "test_ece": 0.009648278065119737, "time": "2026-10-05 09:51:25"}
+### F01_fold2 (1 seed: [0]; 3501 ảnh)
+
+> CẢNH BÁO: chỉ có 1 seed, yêu cầu tối thiểu 3.
+
+| Chỉ số | mean ± std |
+|---|---|
+| top-1 accuracy | 0.9712 (1 seed) |
+| macro-F1 | 0.9628 (1 seed) |
+| balanced accuracy | 0.9594 (1 seed) |
+| ECE (15 bin) | 0.0096 (1 seed) |
+| NLL | 0.1100 (1 seed) |
+
+| Lớp | Precision | Recall | F1 | Số ảnh |
+|---|---|---|---|---|
+| Chinee apple | 0.937 (1 seed) | 0.929 (1 seed) | 0.933 (1 seed) | 225 |
+| Lantana | 0.967 (1 seed) | 0.962 (1 seed) | 0.965 (1 seed) | 213 |
+| Parkinsonia | 0.995 (1 seed) | 0.981 (1 seed) | 0.988 (1 seed) | 206 |
+| Parthenium | 0.980 (1 seed) | 0.961 (1 seed) | 0.970 (1 seed) | 204 |
+| Prickly acacia | 0.944 (1 seed) | 0.958 (1 seed) | 0.951 (1 seed) | 212 |
+| Rubber vine | 0.971 (1 seed) | 0.980 (1 seed) | 0.975 (1 seed) | 202 |
+| Siam weed | 0.986 (1 seed) | 0.963 (1 seed) | 0.974 (1 seed) | 215 |
+| Snake weed | 0.939 (1 seed) | 0.916 (1 seed) | 0.928 (1 seed) | 203 |
+| Negative | 0.977 (1 seed) | 0.985 (1 seed) | 0.981 (1 seed) | 1821 |
+
+Đã lưu kết quả vào eval_out/F01_fold2_*
+=== folds end Mon Oct  5 09:51:25 +07 2026

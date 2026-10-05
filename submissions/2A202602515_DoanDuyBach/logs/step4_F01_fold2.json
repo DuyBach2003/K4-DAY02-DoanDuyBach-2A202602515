@@ -1,0 +1,17 @@
+{
+  "0": {
+    "exp": "F01_fold2",
+    "seed": 0,
+    "fold": 2,
+    "views": "none",
+    "eval_mode": "full",
+    "img_size": 288,
+    "precise_bn": false,
+    "temperature": 0.6222150535862662,
+    "val_macro_f1": 0.9692312613965177,
+    "test_macro_f1": 0.9627703709178951,
+    "test_top1": 0.971151099685804,
+    "test_ece": 0.009648278065119737,
+    "time": "2026-10-05 09:51:25"
+  }
+}

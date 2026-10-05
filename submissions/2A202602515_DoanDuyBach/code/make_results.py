@@ -293,6 +293,147 @@ def sheet_perclass():
     return pd.concat(frames) if frames else pd.DataFrame()
 
 
+def read_json(path: str) -> dict | None:
+    p = Path(path)
+    return json.loads(p.read_text()) if p.exists() else None
+
+
+def ms(v: list) -> str:
+    return f"{np.mean(v):.4f} ± {np.std(v, ddof=1):.4f}"
+
+
+def sheet_amp_dtype():
+    b = read_json("logs/bench_amp_dtype.json")
+    if not b:
+        return pd.DataFrame()
+    return pd.DataFrame([{"mô hình": b["model"], "thiết bị": b["device"], "dtype": k, "batch": b["batch"],
+                          "độ phân giải": b["img_size"], "tốc độ train (ảnh/s)": v["train_img_per_s"],
+                          "thời gian một bước (ms)": v["step_ms"], "torch": b["torch"]} for k, v in b["results"].items()])
+
+
+def sheet_bonus_folds():
+    """Điểm thưởng: chung kết F01 (seed 0) trên fold 0, 1, 2; số test tính lại từ predictions/ bằng eval.py."""
+    rows = []
+    for k in (0, 1, 2):
+        exp = "F01" if k == 0 else f"F01_fold{k}"
+        st = read_json(f"logs/step4_{exp}.json")
+        pred = Path(f"predictions/{exp}_seed0_test.csv")
+        if not st or "0" not in st or not pred.exists():
+            continue
+        rec = st["0"]
+        m = test_metrics(pred)
+        rows.append({"exp_id": exp, "fold": k, "seed": 0, "số ảnh test": m["n"],
+                     "T (khớp trên val của fold)": rec["temperature"], "macro-F1 val": rec["val_macro_f1"],
+                     "macro-F1 test": m["macro_f1"], "top-1 test": m["top1"], "ECE test": m["ece"],
+                     "recall Chinee Apple test": m["recall"][0], "recall Snake Weed test": m["recall"][7]})
+    if len(rows) >= 2:
+        df = pd.DataFrame(rows)
+        agg = {"exp_id": f"mean ± std qua {len(rows)} fold", "fold": "tổng hợp", "seed": 0}
+        for c in df.columns[4:]:
+            agg[c] = ms(df[c].tolist())
+        rows.append(agg)
+    return pd.DataFrame(rows)
+
+
+def sheet_bonus_probe(bb, tr):
+    d = read_json("logs/bonus_dinov2_probe.json")
+    if not d:
+        return pd.DataFrame()
+    label = {"dinov2_vits14": "DINOv2 ViT-S/14 (tự giám sát LVD-142M), đóng băng + hồi quy logistic",
+             "deit_s_in1k": "DeiT-S (có giám sát ImageNet-1k), đóng băng + hồi quy logistic (cùng giao thức)"}
+    rows = [{"mô hình": label[k], "timm": v["timm"], "cách dùng": "linear probe (đặc trưng đóng băng)",
+             "#tham số (M)": v["params_m"], "C (CV 5-fold trên train)": v["best_C"], "macro-F1 val": v["val_macro_f1"],
+             "top-1 val": v["val_top1"], "ECE val": v["val_ece"], "F1 Chinee Apple val": v["val_f1_chinee"],
+             "F1 Snake Weed val": v["val_f1_snake"]} for k, v in d["results"].items()]
+    ref = [("T01", tr, "DeiT-S đóng băng, head train 10 epoch có augmentation (Bước 2)"),
+           ("B03", bb, "DeiT-S tinh chỉnh toàn bộ (Bước 1)"), ("B02", bb, "ConvNeXt-T tinh chỉnh toàn bộ (Bước 1)"),
+           ("B01", bb, "ResNet-50 tinh chỉnh toàn bộ (Bước 1)"), ("B06", bb, "MobileNetV3 tinh chỉnh toàn bộ (Bước 1)")]
+    for exp, df, desc in ref:
+        r = df[df["exp_id"] == exp].iloc[0]
+        rows.append({"mô hình": f"{exp}: {desc}", "cách dùng": "tham chiếu", "macro-F1 val": r["macro-F1 val"],
+                     "top-1 val": r["top-1 val"], "F1 Chinee Apple val": r["F1 Chinee Apple val"],
+                     "F1 Snake Weed val": r["F1 Snake Weed val"]})
+    return pd.DataFrame(rows)
+
+
+SHIFT_NAMES = {"clean": "sạch", "dark_0.5": "thiếu sáng ×0,5", "dark_0.3": "thiếu sáng ×0,3", "blur_1.5": "mờ σ = 1,5 px",
+               "blur_3": "mờ σ = 3 px", "noise_0.05": "nhiễu σ = 0,05", "noise_0.10": "nhiễu σ = 0,10"}
+
+
+def sheet_bonus_shift():
+    d = read_json("logs/bonus_shift.json")
+    if not d:
+        return pd.DataFrame()
+    rows = []
+    for exp, res in d["results"].items():
+        for cond, r in res.items():
+            s = r["summary"]
+            rows.append({"cấu hình": exp, "suy luận": f"{d['groups'][exp]['eval']} {d['groups'][exp]['img_size']}",
+                         "điều kiện (val)": SHIFT_NAMES[cond], "số seed": len(r["per_seed"]),
+                         "macro-F1 val": s["macro_f1"]["mean"], "std macro-F1": s["macro_f1"]["std"],
+                         "top-1 val": s["top1"]["mean"], "F1 Chinee Apple": s["f1_chinee"]["mean"],
+                         "F1 Snake Weed": s["f1_snake"]["mean"], "ECE (T = 1)": s["ece_T1"]["mean"],
+                         "ECE (T khớp val sạch)": s["ece_Tclean"]["mean"], "ECE (T oracle, khớp lại trên ảnh lệch)":
+                         s["ece_Toracle"]["mean"], "T oracle": s["T_oracle"]["mean"],
+                         "độ tin cậy TB (T khớp val sạch)": s["conf_Tclean"]["mean"]})
+    return pd.DataFrame(rows)
+
+
+def sheet_bonus_tta():
+    d = read_json("logs/bonus_tta.json")
+    if not d:
+        return pd.DataFrame()
+    rows = []
+    for exp, res in d.get("bn", {}).get("results", {}).items():
+        for cond, r in res.items():
+            rows.append({"phương pháp": "BN-adapt: thống kê BN tính lại trên chính ảnh lệch (không nhãn)",
+                         "mô hình": exp, "điều kiện (val)": SHIFT_NAMES[cond],
+                         "macro-F1 trước": r["goc"]["macro_f1"], "macro-F1 precise-BN (train sạch)":
+                         r["precise_bn"]["macro_f1"], "macro-F1 sau": r["bn_adapt"]["macro_f1"],
+                         "ECE trước": r["goc"]["ece"], "ECE sau": r["bn_adapt"]["ece"]})
+    for cond, r in d.get("tent", {}).get("results", {}).items():
+        rows.append({"phương pháp": "Tent: cập nhật γ/β LayerNorm, cực tiểu entropy, online 1 lượt (không nhãn)",
+                     "mô hình": "F01 seed 0", "điều kiện (val)": SHIFT_NAMES[cond],
+                     "macro-F1 trước": r["truoc"]["macro_f1"], "macro-F1 sau": r["tent"]["macro_f1"],
+                     "ECE trước": r["truoc_Tclean"]["ece"], "ECE sau": r["tent_Tclean"]["ece"],
+                     "ghi chú": "ECE với T khớp trên val sạch"})
+    return pd.DataFrame(rows)
+
+
+def sheet_bonus_onnx():
+    d = read_json("logs/bonus_onnx.json")
+    if not d:
+        return pd.DataFrame()
+    names = {"pytorch_mps": "PyTorch, GPU (MPS)", "pytorch_cpu": "PyTorch, CPU", "onnxruntime_cpu": "ONNX Runtime, CPU",
+             "onnxruntime_coreml": "ONNX Runtime, CoreML EP"}
+    rows = []
+    for k, lat in d["latency_b1"].items():
+        par = d["parity_val"].get(k, {})
+        rows.append({"backend": names[k], "dtype": "fp32", "batch": 1, "độ phân giải": 288, "p50 (ms)": lat["p50"],
+                     "p95 (ms)": lat["p95"], "p99 (ms)": lat["p99"], "số lần đo": lat["n"], "warmup": lat["warmup"],
+                     "macro-F1 val": par.get("macro_f1", np.nan),
+                     "sai khác logit lớn nhất so với PyTorch CPU": par.get("max_abs_logit_diff_vs_pytorch_cpu", np.nan),
+                     "tỉ lệ trùng nhãn đoán": par.get("argmax_agreement_vs_pytorch_cpu", np.nan)})
+    return pd.DataFrame(rows)
+
+
+def sheet_bonus_attention():
+    d = read_json("logs/bonus_attention.json")
+    if not d:
+        return pd.DataFrame()
+    rows = []
+    for key, label in (("sai", "đoán sai"), ("dung", "đoán đúng")):
+        s = d["val_quantitative"][key]
+        rows.append({"nhóm ảnh val (Chinee apple + Snake weed)": label, "số ảnh": s["n"],
+                     "diện tích thực vật xanh (ExG-Otsu)": s["veg_area"]["mean"],
+                     "Grad-CAM: tập trung vào thực vật (tỉ số)": s["gradcam_veg_ratio"]["mean"],
+                     "Grad-CAM: entropy chuẩn hoá": s["gradcam_entropy"]["mean"],
+                     "Grad-CAM: std entropy": s["gradcam_entropy"]["std"],
+                     "rollout: tập trung vào thực vật (tỉ số)": s["rollout_veg_ratio"]["mean"],
+                     "rollout: entropy chuẩn hoá": s["rollout_entropy"]["mean"]})
+    return pd.DataFrame(rows)
+
+
 def sheet_summary(bb, tr, inf):
     rows = []
     for _, r in bb.iterrows():
@@ -400,6 +541,11 @@ def main():
               "PerClass": pc, "Latency": latency}
     if len(dec):
         sheets["Decomposition"] = dec
+    # điểm thưởng (RUBRIC mục 2) và căn cứ chọn dtype AMP; sheet nào chưa có log thì bỏ qua
+    extra = {"AMP_dtype": sheet_amp_dtype(), "Bonus_Folds": sheet_bonus_folds(), "Bonus_Probe": sheet_bonus_probe(bb, tr),
+             "Bonus_Shift": sheet_bonus_shift(), "Bonus_TTA": sheet_bonus_tta(), "Bonus_Attention": sheet_bonus_attention(),
+             "Bonus_ONNX": sheet_bonus_onnx()}
+    sheets.update({k: v for k, v in extra.items() if len(v)})
     write_xlsx(sheets, "results.xlsx", notes, compare)
     print("saved results.xlsx", {k: len(v) for k, v in sheets.items()})
 

@@ -164,6 +164,55 @@ def fig_seed_curves(exp, seeds=(0, 1, 2)):
     fig.savefig(Path("curves") / f"{exp}_{cfg['desc']}.png", dpi=130); plt.close(fig)
 
 
+def fig_bonus_shift():
+    """Điểm thưởng: macro-F1 và ECE dưới lệch phân phối (val), và test-time adaptation (logs/bonus_*.json)."""
+    p, q = Path("logs/bonus_shift.json"), Path("logs/bonus_tta.json")
+    if not p.exists():
+        return
+    from make_results import SHIFT_NAMES
+
+    d = json.loads(p.read_text())
+    conds = list(d["conditions"])
+    x = np.arange(len(conds))
+    tta = json.loads(q.read_text()) if q.exists() else {}
+    fig, axes = plt.subplots(1, 3 if tta else 2, figsize=(19 if tta else 13, 4.8))
+    ax = axes[0]
+    for k, (exp, lab) in enumerate((("F01", "F01 chung kết (ảnh đầy đủ 288)"), ("T00", "T00 mốc (CenterCrop 224)"))):
+        s = [d["results"][exp][c]["summary"]["macro_f1"] for c in conds]
+        ax.bar(x + (k - 0.5) * 0.38, [v["mean"] for v in s], 0.38, yerr=[v["std"] for v in s], capsize=3, label=lab)
+    ax.set_ylim(0, 1); ax.set_ylabel("macro-F1 val (mean ± std, 3 seed)"); ax.set_title("Độ chính xác dưới lệch phân phối")
+    ax = axes[1]
+    for k, (key, lab) in enumerate((("ece_T1", "T = 1"), ("ece_Tclean", "T khớp trên val sạch"),
+                                    ("ece_Toracle", "T oracle (khớp lại trên ảnh lệch)"))):
+        ax.bar(x + (k - 1) * 0.27, [d["results"]["F01"][c]["summary"][key]["mean"] for c in conds], 0.27, label=lab)
+    ax.set_ylabel("ECE val (15 bin), F01, TB 3 seed"); ax.set_title("Hiệu chuẩn của F01 dưới lệch phân phối")
+    if tta:
+        ax = axes[2]
+        shifted = [c for c in conds if c != "clean"]
+        xs = np.arange(len(shifted))
+        series = []
+        if "B06" in tta.get("bn", {}).get("results", {}):
+            r = tta["bn"]["results"]["B06"]
+            series += [("B06 trước", [r[c]["goc"]["macro_f1"] for c in shifted]),
+                       ("B06 + BN-adapt", [r[c]["bn_adapt"]["macro_f1"] for c in shifted])]
+        if tta.get("tent", {}).get("results"):
+            r = tta["tent"]["results"]
+            series += [("F01 trước", [r[c]["truoc"]["macro_f1"] for c in shifted]),
+                       ("F01 + Tent", [r[c]["tent"]["macro_f1"] for c in shifted])]
+        w = 0.8 / max(len(series), 1)
+        for k, (lab, v) in enumerate(series):
+            ax.bar(xs + (k - (len(series) - 1) / 2) * w, v, w, label=lab)
+        ax.set_xticks(xs, [SHIFT_NAMES[c] for c in shifted], rotation=30, ha="right")
+        ax.set_ylim(0, 1.2); ax.set_yticks(np.arange(0, 1.01, 0.2)); ax.set_ylabel("macro-F1 val")
+        ax.set_title("Test-time adaptation (không dùng nhãn)")
+        ax.legend(fontsize=8, ncol=2, loc="upper center"); ax.grid(alpha=.3, axis="y")
+    for ax in axes[:2]:
+        ax.set_xticks(x, [SHIFT_NAMES[c] for c in conds], rotation=30, ha="right")
+        ax.legend(fontsize=8); ax.grid(alpha=.3, axis="y")
+    fig.suptitle("Điểm thưởng: lệch phân phối tự tạo trên VAL fold 0 (không dùng test)")
+    fig.tight_layout(); fig.savefig(FIG / "bonus_shift_tta.png", dpi=130); plt.close(fig)
+
+
 def fig_confusion(tag):
     p = Path(f"eval_out/{tag}_confusion_sum.csv")
     if not p.exists():
@@ -225,6 +274,7 @@ def main():
     fig_reliability()
     for exp in ("T00", "F01"):
         fig_seed_curves(exp)
+    fig_bonus_shift()
     for tag in ("F01", "T00"):
         fig_confusion(tag)
     fig_errors(args.images_dir)

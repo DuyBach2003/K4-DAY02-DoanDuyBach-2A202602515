@@ -1,0 +1,21 @@
+{
+  "device": "mps",
+  "torch": "2.14.1",
+  "model": "resnet50",
+  "batch": 64,
+  "img_size": 224,
+  "results": {
+    "fp32": {
+      "train_img_per_s": 44.583161221389624,
+      "step_ms": 1435.519560449984
+    },
+    "fp16": {
+      "train_img_per_s": 60.86368734399919,
+      "step_ms": 1051.530112499995
+    },
+    "bf16": {
+      "train_img_per_s": 58.44481019759617,
+      "step_ms": 1095.0501812500079
+    }
+  }
+}

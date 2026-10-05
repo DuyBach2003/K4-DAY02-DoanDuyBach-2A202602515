@@ -232,5 +232,43 @@ class TestTrainHelpers(unittest.TestCase):
         self.assertLessEqual(r["p95"], r["p99"])
 
 
+class TestBonus(unittest.TestCase):
+    """Các hàm của phần điểm thưởng (bonus_shift_tta.py, bonus_attention.py)."""
+
+    def setUp(self):
+        from PIL import Image
+
+        rng = np.random.default_rng(0)
+        self.img = Image.fromarray(rng.integers(0, 256, (32, 32, 3), dtype=np.uint8))
+
+    def test_corrupt_clean_dark_noise(self):
+        import bonus_shift_tta as S
+
+        a = np.asarray(self.img, dtype=np.float32)
+        self.assertIs(S.corrupt(self.img, None, None, 0), self.img)
+        dark = np.asarray(S.corrupt(self.img, "dark", 0.5, 0), dtype=np.float32)
+        self.assertLess(np.abs(dark - a * 0.5).max(), 1.0)  # chỉ sai số làm tròn 8 bit
+        n1 = np.asarray(S.corrupt(self.img, "noise", 0.1, 7))
+        n2 = np.asarray(S.corrupt(self.img, "noise", 0.1, 7))
+        self.assertTrue((n1 == n2).all())  # nhiễu cố định theo seed của ảnh
+        self.assertFalse((n1 == np.asarray(S.corrupt(self.img, "noise", 0.1, 8))).all())
+
+    def test_rollout_uniform_attention(self):
+        import bonus_attention as A
+
+        n = 1 + 16  # CLS + 4 × 4 patch
+        attn = [torch.full((2, 3, n, n), 1.0 / n) for _ in range(4)]
+        r = A.rollout(attn, 1)
+        self.assertEqual(tuple(r.shape), (2, 16))
+        self.assertTrue(torch.allclose(r, torch.full_like(r, 1 / 16), atol=1e-6))
+
+    def test_otsu_splits_bimodal(self):
+        import bonus_attention as A
+
+        v = np.concatenate([np.full(500, -0.3), np.full(500, 0.4)]) + np.random.default_rng(0).normal(0, .02, 1000)
+        t = A.otsu(v)
+        self.assertTrue(-0.2 < t < 0.3)
+
+
 if __name__ == "__main__":
     unittest.main()
